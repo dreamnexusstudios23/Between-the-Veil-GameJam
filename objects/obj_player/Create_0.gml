@@ -59,9 +59,23 @@ move = function()
 		
 	}
 	else
-	{
-		//SE não estou no chão, então aplico a gravidade
-		velv += grav;
+	{	
+		//SE estou na parede a gravidade é menor
+		if (wall)
+		{
+			//Diminui a gravidade
+			grav = 0.2;
+			//Aplica a gravidade
+			velv += grav;
+		}
+		else
+		{
+			//SE não estou na parede a gravidade é normal	
+			grav = 0.4;
+			
+			//SE não estou no chão, então aplico a gravidade
+			velv += grav;
+		}
 	}
 	
 	show_debug_message(side_wall)
@@ -160,13 +174,13 @@ wall_jump = function()
 	#region //Descobre em qual parede está
 	
 	//SE estou colidindo com a parede da esquerda
-	if (_wall_left)
+	if (_wall_left && !chao)
 	{
 		//Parede é true
 		wall = true;
 		side_wall = -1;
 	}
-	else if (_wall_right) //SE estou colidindo com a da direita
+	else if (_wall_right && !chao) //SE estou colidindo com a da direita
 	{
 		//Parede é true
 		wall = true;
@@ -181,16 +195,6 @@ wall_jump = function()
 	
 	#endregion
 	
-	#region //Diminui a velocidade deslizando na parede
-	
-	//SE estou na parede, então eu deslizo devagar nela
-	if (wall)
-	{
-			
-	}
-	
-	#endregion
-	
 	#region //Faz o movimento na parede
 	
 	//SE estou na parede da esquerda e aperto a seta para direita
@@ -198,7 +202,12 @@ wall_jump = function()
 	{
 		//Força ele ir para direita e para cima
 		velh += max_velh;
+		//Limta o velh
+		velh = clamp(velh, -max_velh, max_velh);
+		
 		velv -= max_velv;
+		//Limta o velv
+		velv = clamp(velv, -max_velv, max_velv);
 	}
 	
 	//SE estou na parede da direita, e aperto para esquerda
@@ -206,7 +215,12 @@ wall_jump = function()
 	{
 		//Força ele ir para esquerda
 		velh -= max_velh;
+		//Limta o velh
+		velh = clamp(velh, -max_velh, max_velh);
+		
 		velv -= max_velv;
+		//Limta o velv
+		velv = clamp(velv, -max_velv, max_velv);
 	}
 	
 	#endregion
