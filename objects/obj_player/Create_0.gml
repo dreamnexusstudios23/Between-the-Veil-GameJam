@@ -18,8 +18,18 @@ jumps_air = 1; //Qtd de pulos que eu tenho para dar no Ar (sem contar o pulo nor
 qtd_jumps = jumps_air;
 
 //Variáveis para o wall jump
-wall = false;
+wall	  = false;
 side_wall = 0;
+
+//Variáveis para o dash
+dash_mov	  = 2;
+qtd_dash	  = dash_mov;
+dash_vel	  = 15; // + 15 de velocidade quando aplicado no velh apenas
+dash_cooldown = 0; //já começa em 0
+timer_dash	  = 12; //12 frames
+t_dash_atual  = 0;
+dash_ativado  = false;
+dash_dir	  = 0;
 
 #endregion
 
@@ -32,6 +42,7 @@ inputs = function()
 	up		= keyboard_check_pressed(ord("W"));
 	left	= keyboard_check(ord("A"));
 	right	= keyboard_check(ord("D"));	
+	space	= keyboard_check_pressed(vk_space);
 }
 
 //Aplica os movimentos com base nos controles
@@ -56,6 +67,9 @@ move = function()
 		
 		//Reseto meus double jumps
 		qtd_jumps = jumps_air;
+		
+		//Reseto meus dash
+		qtd_dash = dash_mov;
 		
 	}
 	else
@@ -226,6 +240,48 @@ wall_jump = function()
 	#endregion
 	
 }
+
+dash = function()
+{
+	// DIMINUI COOLDOWN
+	if (dash_cooldown > 0)
+	{
+		dash_cooldown--;
+	}
+	
+	// ATIVAR DASH
+	if (!dash_ativado && qtd_dash > 0 && space && dash_cooldown <= 0)
+	{
+		dash_ativado = true;
+		t_dash_atual = timer_dash;
+		
+		// pega direção baseada no input
+		dash_dir = right - left;
+		
+		// se não estiver apertando nada, usa direção que está olhando
+		if (dash_dir == 0)
+			dash_dir = image_xscale;
+		
+		qtd_dash--;
+	}
+	
+	// SE ESTÁ DASHANDO
+	if (dash_ativado)
+	{
+		velh = dash_dir * (max_velh + dash_vel);
+		velv = 0; // cancela gravidade
+		
+		t_dash_atual--;
+		
+		if (t_dash_atual <= 0)
+		{
+			dash_ativado = false;
+			dash_cooldown = 30; 
+		}
+	}
+	
+}
+
 #endregion
 
 

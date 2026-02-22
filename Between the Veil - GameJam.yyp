@@ -4,6 +4,7 @@
   "name": "Between the Veil - GameJam",
   "resources": [
     {"id":{"name":"spr_fundo","path":"sprites/spr_fundo/spr_fundo.yy",},"order":2,},
+    {"id":{"name":"scr_utilidades","path":"scripts/scr_utilidades/scr_utilidades.yy",},"order":0,},
     {"id":{"name":"spr_player","path":"sprites/spr_player/spr_player.yy",},"order":0,},
     {"id":{"name":"spr_colisor","path":"sprites/spr_colisor/spr_colisor.yy",},"order":1,},
     {"id":{"name":"obj_player","path":"objects/obj_player/obj_player.yy",},"order":0,},

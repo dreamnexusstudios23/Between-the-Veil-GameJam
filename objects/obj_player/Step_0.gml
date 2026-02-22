@@ -18,7 +18,15 @@ double_jump();
 //Método de pular na parede
 wall_jump();
 
+//Método para usar o dash
+dash();
+
 #endregion
 
+//SE apertar o TAB, ativa o debug
+if (keyboard_check_pressed(vk_tab)) global.debug = !global.debug;
+
+//Restart na room
+if (keyboard_check_pressed(ord("R"))) room_restart();
 
 

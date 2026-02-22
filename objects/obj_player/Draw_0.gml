@@ -4,12 +4,15 @@
 //Me desenhando
 draw_self();
 
-//Alinhando o texto
-draw_set_halign(1);
-draw_set_valign(1);
-draw_text(x, y - sprite_height - 20, velv)
+if (global.debug)
+{
+	//Alinhando o texto
+	draw_set_halign(1);
+	draw_set_valign(1);
 
-//Resta os draw
-draw_set_halign(-1);
-draw_set_valign(-1);
+	draw_text(x, y - sprite_height - 20, qtd_dash)
 
+	//Resta os draw
+	draw_set_halign(-1);
+	draw_set_valign(-1);
+}
