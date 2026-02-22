@@ -249,8 +249,9 @@ dash = function()
 		dash_cooldown--;
 	}
 	
-	// ATIVAR DASH
-	if (!dash_ativado && qtd_dash > 0 && space && dash_cooldown <= 0)
+	// ATIVAR DASH (SE o dash não está ativado, e tem dash pra usar, aperto espaço, o cooldown
+	//Está zerado, e não estou na parede)
+	if (!dash_ativado && qtd_dash > 0 && space && dash_cooldown <= 0 && !wall)
 	{
 		dash_ativado = true;
 		t_dash_atual = timer_dash;
