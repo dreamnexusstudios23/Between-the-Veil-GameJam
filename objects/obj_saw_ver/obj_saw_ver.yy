@@ -34,7 +34,7 @@
     {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","propertyId":{"name":"side_move","path":"objects/obj_saw/obj_saw.yy",},"objectId":{"name":"obj_saw","path":"objects/obj_saw/obj_saw.yy",},"value":"\"up\"",},
   ],
   "parent": {
-    "name": "Objects",
-    "path": "folders/Objects.yy",
+    "name": "obj_inimigos",
+    "path": "folders/Objects/obj_inimigos.yy",
   },
 }

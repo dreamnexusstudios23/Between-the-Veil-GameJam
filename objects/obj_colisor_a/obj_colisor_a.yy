@@ -30,7 +30,7 @@
   "properties": [],
   "overriddenProperties": [],
   "parent": {
-    "name": "Objects",
-    "path": "folders/Objects.yy",
+    "name": "obj_colisoes",
+    "path": "folders/Objects/obj_colisoes.yy",
   },
 }
