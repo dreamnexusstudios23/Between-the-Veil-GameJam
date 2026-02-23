@@ -31,6 +31,12 @@ t_dash_atual  = 0;
 dash_ativado  = false;
 dash_dir	  = 0;
 
+//Variáveis do pitao
+pitao_ativado = false;
+pitao_timer	  = 5; //5 segundos
+p_timer_atual = pitao_timer;
+pitao_wall	  = false;
+
 #endregion
 
 #region //Métodos
@@ -79,17 +85,20 @@ move = function()
 		if (wall)
 		{
 			//Diminui a gravidade
-			grav = 0.1;
+			grav = 0.2;
 			//Aplica a gravidade
 			velv += grav;
 		}
 		else
 		{
-			//SE não estou na parede a gravidade é normal	
-			grav = 0.4;
+			//SE não estou na parede e nem na parede do pitao a gravidade é normal	
+			if (!pitao_wall)
+			{
+				grav = 0.4;
 			
-			//SE não estou no chão, então aplico a gravidade
-			velv += grav;
+				//SE não estou no chão, então aplico a gravidade
+				velv += grav;
+			}
 		}
 	}
 	
@@ -195,18 +204,13 @@ wall_jump = function()
 		wall = true;
 		side_wall = -1;
 		
-		//SE o jogador tem o item pitão, ele consegue ficar preso na parede
-		if (global.pitao && pitao) velv = 0;
-		
 	}
 	else if (_wall_right && !chao) //SE estou colidindo com a da direita
 	{
 		//Parede é true
 		wall = true;
 		side_wall = 1;
-		
-		//SE o jogador tem o item pitão, ele consegue ficar preso na parede
-		if (global.pitao && pitao) velv = 0;
+
 	}
 	else
 	{
@@ -289,6 +293,61 @@ dash = function()
 		}
 	}
 	
+}
+
+
+pitao_item = function()
+{
+	
+	//Pega o colisor do pitao
+	var _pitao_parede_esq = place_meeting(x - 1, y, obj_pitao_colisor);
+	var _pitao_parede_dir = place_meeting(x + 1, y, obj_pitao_colisor);
+	
+	//Verifica se estou em algum lado de alguma parede de pitão
+	if (_pitao_parede_esq or _pitao_parede_dir)
+	{
+		//Está na parede de pitão
+		pitao_wall = true;
+	}
+	else
+	{
+		//SE sair da parede 
+		pitao_wall = false;
+		pitao_ativado = false;
+		
+		//Reseta o timer do pitão
+		p_timer_atual = pitao_timer;
+	}
+	
+	//SE eu estiver colidindo com o objeto pitao e tiver o pitao e usa-lo
+	if (pitao && global.pitao && pitao_wall)
+	{
+		//Ativa o uso do pitão
+		pitao_ativado = true;
+	}
+	
+	//SE pitao foi ativado, então fico preso na parede até acabar o timer
+	if (pitao_ativado && pitao_wall)
+	{
+		//Fica preso na parede
+		velv = 0;
+		
+		//Começa a diminuir o timer de 5 segundos de ficar preso
+		p_timer_atual -= delta_time / 1000000;
+	}
+
+	
+	//SE o timer do pitão for 0, então ele cai e desativa
+	if (p_timer_atual <= 0)
+	{
+		pitao_ativado = false;
+		pitao_wall = false;
+		
+		//Reseta o timer do pitão
+		p_timer_atual = pitao_timer;
+
+	}
+
 }
 
 #endregion

@@ -6,6 +6,6 @@ global.debug = false;
 
 #region //Globais de itens
 
-global.pitao = false;
+global.pitao = true;
 
 #endregion

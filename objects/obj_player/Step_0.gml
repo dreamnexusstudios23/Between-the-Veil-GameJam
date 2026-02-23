@@ -21,6 +21,9 @@ wall_jump();
 //Método para usar o dash
 dash();
 
+//Método do item pitao
+pitao_item();
+
 #endregion
 
 //SE apertar o TAB, ativa o debug
