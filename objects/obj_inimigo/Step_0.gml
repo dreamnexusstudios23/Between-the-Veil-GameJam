@@ -15,6 +15,9 @@ state_machine();
 //Checa a gravidade
 grav_check();
 
+//Checa se ainda sou alvo
+targed_check();
+
 #endregion
 
 

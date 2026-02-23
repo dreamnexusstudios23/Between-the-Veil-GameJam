@@ -29,6 +29,7 @@ chao		   = noone;
 t_chase_state = 4; //4 segundos
 t_chase_run	  = 3; //3 segundos
 t_atk		  = 1.3 // 1.3 segundos
+del_atk		  = 0.7 // 0.7 segundos para deletar o hitbox
 
 #endregion
 
@@ -138,10 +139,7 @@ rain_entrance_check = function()
 	
 	//SE estiver no raio do inimigo
 	if (_player)
-	{
-		//Define o player como alvo se a instancia do player existir
-		if (instance_exists(obj_player)) alvo = _player;
-		
+	{	
 		//Aumenta o raio
 		rain_size = 250;
 		
@@ -162,9 +160,6 @@ rain_entrance_check = function()
 		//SE não estiver mais no raio, ele volta ao tamanho normal
 		rain_size = 180;
 		
-		//Não tenho mais alvo
-		alvo = noone;
-		
 		//Identifica que saiu no raio
 		collision_rain = false;	
 	}
@@ -172,6 +167,23 @@ rain_entrance_check = function()
 	#endregion	
 }
 
+targed_check = function()
+{
+	//SE a instancia do player existe
+	if (instance_exists(obj_player))
+	{
+		//SE estou dentro do raio
+		if (collision_rain)
+		{
+			alvo = obj_player;	
+		}	
+		else
+		{
+			alvo = noone;	
+		}
+	}
+	
+}
 
 //Máquina de estados
 state_machine = function()
@@ -326,7 +338,10 @@ state_machine = function()
 		#region //Carregando ataque
 		case "load_attack":
 			//Diminui o timer e limita ele
-			t_atk -= delta_time / 1000000;
+			t_atk -= delta_time / 100000;
+			
+			//Fica parado
+			velh = 0;
 			
 			//Animação carregando ataque
 			
@@ -347,21 +362,42 @@ state_machine = function()
 			//Animação do ataque
 			
 			//Cria a hitbox com base na direção que o inimigo está olhando por último
-			if (dir < x)
+			if (dir == -1)
 			{
 				//Distância da hitbox
-				var _offset = 70;
+				var _offset = 110;
 				
 				//Cria hitbox para esquerda
 				instance_create_layer(x - _offset, y - sprite_height, layer, obj_hitbox_enemy);
 			}
-			else if (dir > x)
+			else if (dir == 1)
 			{
 				//Distância da hitbox
-				var _offset = 70;
+				var _offset = 50;
 				
 				//Cria hitbox para esquerda
 				instance_create_layer(x + _offset, y - sprite_height, layer, obj_hitbox_enemy);	
+			}
+			
+			//SE foi criado a hitbox
+			if (instance_exists(obj_hitbox_enemy))
+			{
+				//Diminui o timer para destruir ela
+				del_atk -= delta_time / 1000000;
+				del_atk = clamp(del_atk, 0, 0.7);
+				
+				//Se o timer zerar destroi a hitbox
+				if (del_atk <= 0)
+				{
+					instance_destroy(obj_hitbox_enemy);
+					
+					//Reseta o timer
+					del_atk = 0.7;
+					
+					//E sai do estado
+					state = "idle";
+					
+				}
 			}
 			
 		break;
