@@ -37,6 +37,11 @@ pitao_timer	  = 5; //5 segundos
 p_timer_atual = pitao_timer;
 pitao_wall	  = false;
 
+//Variáveis de ataque
+atk_cooldown = 0; //1 segundo, porém está 0 por que eu já posso começar atacando
+atk_timer = atk_cooldown;
+del_hitbox = 0.3; //Leva 0.3 segundos para sumir a hitbox criada
+
 
 #endregion
 
@@ -46,12 +51,13 @@ pitao_wall	  = false;
 inputs = function()
 {
 	//Pega as teclas
-	up		= keyboard_check_pressed(ord("W"));
-	left	= keyboard_check(ord("A"));
-	right	= keyboard_check(ord("D"));	
-	space	= keyboard_check_pressed(vk_space);
-	pitao	= keyboard_check_pressed(ord("F"));
-	change_w= keyboard_check_pressed(ord("Q"));
+	up			= keyboard_check_pressed(ord("W"));
+	left		= keyboard_check(ord("A"));
+	right		= keyboard_check(ord("D"));	
+	space		= keyboard_check_pressed(vk_space);
+	pitao		= keyboard_check_pressed(ord("F"));
+	change_w	= keyboard_check_pressed(ord("Q"));
+	attack_mb	= mouse_check_button_pressed(mb_left);
 }
 
 //Aplica os movimentos com base nos controles
@@ -151,6 +157,7 @@ pixel_perfect = function()
 	}
 }
 
+//Checa a colisão
 collision_check = function()
 {
 	//Checa se estou colidindo com o chão
@@ -167,6 +174,7 @@ collision_check = function()
 	
 }
 
+//Pulo duplo
 double_jump = function()
 {
 	//SE eu não estou no chão, e ainda tenho pulos, então eu pulo de novo
@@ -185,6 +193,7 @@ double_jump = function()
 	}
 }
 
+//Pulo na parede
 wall_jump = function()
 {
 	
@@ -254,6 +263,7 @@ wall_jump = function()
 	
 }
 
+//Dash
 dash = function()
 {
 	// DIMINUI COOLDOWN
@@ -296,7 +306,7 @@ dash = function()
 	
 }
 
-
+//Item pitão
 pitao_item = function()
 {
 	
@@ -351,6 +361,7 @@ pitao_item = function()
 
 }
 
+//Mecânica de trocar de mundos
 change_world = function()
 {
 	//Ao pressionar a tecla Q, troca entre os mundos
@@ -369,6 +380,60 @@ change_world = function()
 		//Torna só a layer plataform_b visivel
 		layer_set_visible("plataform_b", false);
 		layer_set_visible("plataform_a", true);	
+	}
+}
+
+//Mecânica de ataque
+attack = function()
+{
+	//Diminui o timer do ataque
+	atk_timer -= delta_time / 100000;
+	//Limitando a descida do timer do ataque
+	atk_timer = clamp(atk_timer, 0, atk_cooldown);
+	
+	if (attack_mb && atk_timer <= 0)
+	{
+		var offset = 80;
+		var hit_x;
+		
+		// Descobre lado do mouse
+		if (mouse_x < x)
+		{
+			// esquerda
+			hit_x = x - offset;
+		}
+		else
+		{
+			// direita
+			hit_x = x + offset;
+		}
+		
+		// altura do ataque
+		var hit_y = y - sprite_height / 1.5;
+		
+		//Cria a hitbox
+		instance_create_layer(hit_x, hit_y, layer, obj_hitbox);
+		
+		//Reseta o tempo
+		atk_cooldown = 1; // 1 segundo
+		atk_timer = atk_cooldown;
+	}
+	
+	//SE a instancia da hitbox foi criada, então diminui o timer até ela se destruir
+	if (instance_exists(obj_hitbox))
+	{
+		//Diminui o timer
+		del_hitbox -= delta_time / 1000000;
+		del_hitbox = clamp(del_hitbox, 0, 0.3);
+		
+		//Quando o timer chegar a zero, ela se deleta
+		if (del_hitbox <= 0)
+		{
+			instance_destroy(obj_hitbox);	
+			
+			//Reseta o timer
+			del_hitbox = 0.3;
+		}
 	}
 }
 

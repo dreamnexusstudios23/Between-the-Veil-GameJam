@@ -27,6 +27,9 @@ pitao_item();
 //Método de alternar entre os mundos
 change_world();
 
+//Método de ataque
+attack();
+
 #endregion
 
 //SE apertar o TAB, ativa o debug
