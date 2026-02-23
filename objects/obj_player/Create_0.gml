@@ -43,6 +43,7 @@ inputs = function()
 	left	= keyboard_check(ord("A"));
 	right	= keyboard_check(ord("D"));	
 	space	= keyboard_check_pressed(vk_space);
+	pitao	= keyboard_check_pressed(ord("F"));
 }
 
 //Aplica os movimentos com base nos controles
@@ -78,7 +79,7 @@ move = function()
 		if (wall)
 		{
 			//Diminui a gravidade
-			grav = 0.2;
+			grav = 0.1;
 			//Aplica a gravidade
 			velv += grav;
 		}
@@ -193,12 +194,19 @@ wall_jump = function()
 		//Parede é true
 		wall = true;
 		side_wall = -1;
+		
+		//SE o jogador tem o item pitão, ele consegue ficar preso na parede
+		if (global.pitao && pitao) velv = 0;
+		
 	}
 	else if (_wall_right && !chao) //SE estou colidindo com a da direita
 	{
 		//Parede é true
 		wall = true;
 		side_wall = 1;
+		
+		//SE o jogador tem o item pitão, ele consegue ficar preso na parede
+		if (global.pitao && pitao) velv = 0;
 	}
 	else
 	{

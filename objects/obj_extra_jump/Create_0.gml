@@ -1,0 +1,24 @@
+/// @description Inserir descrição aqui
+// Você pode escrever seu código neste editor
+
+#region //Métodos do power
+
+take = function()
+{
+	//SE o player colidir comigo, eu dou mais um pulo extra para ele
+	var _player_collide = instance_place(x, y, obj_player);
+	
+	if (_player_collide)
+	{
+		//Dou mais um pulo para ele
+		_player_collide.qtd_jumps++;
+		
+		//Me destruo
+		instance_destroy(id);
+	}
+	
+}
+
+#endregion
+
+

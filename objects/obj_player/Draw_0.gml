@@ -10,7 +10,7 @@ if (global.debug)
 	draw_set_halign(1);
 	draw_set_valign(1);
 
-	draw_text(x, y - sprite_height - 20, qtd_dash)
+	draw_text(x, y - sprite_height - 20, qtd_jumps);
 
 	//Resta os draw
 	draw_set_halign(-1);
