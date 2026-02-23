@@ -3,12 +3,27 @@
 
 #region //Variáveis de controle do player
 
-//Variáveis de velocidade e gravidade
+//Variáveis de velocidade e gravidade e escala
 velh		= 0;
 velv		= 0;
 max_velv	= 10;
-max_velh	= 6;
+max_velh	= 4;
 grav		= 0.4;
+dir			= 1;
+scale_base  = 1.5;
+
+//Variáveis de estado
+enum PlayerState
+{
+    IDLE,
+    RUN,
+    JUMP,
+    FALL,
+    WALL,
+    DASH
+}
+
+state = PlayerState.IDLE;
 
 //Variáveis de controle de colisão
 chao = noone;
@@ -65,8 +80,20 @@ move = function()
 	//Utiliza os inputs
 	inputs();
 	
+	#region //Movimento e direção
 	//Movimento horizontal
 	velh = (right - left) * max_velh;
+
+	if (velh != 0 && !wall)
+	{
+	    dir = sign(velh);
+	}
+
+	image_xscale = dir * scale_base;
+	
+	#endregion
+	
+	#region //Chão e gravidade
 	
 	//SE estou no chão, eu posso pular
 	if (chao)
@@ -111,6 +138,9 @@ move = function()
 			}
 		}
 	}
+	#endregion
+	
+	#region //One way colisão
 	
 	//SE estou caindo, ativa a colisão one way
 	if (velv >= 1)
@@ -118,6 +148,88 @@ move = function()
 		global.one_way_collision = true;	
 	}
 	
+	#endregion
+	
+}
+
+//Update de estados do player
+update_state = function()
+{
+    // DASH tem prioridade máxima
+    if (dash_ativado)
+    {
+        state = PlayerState.DASH;
+        return;
+    }
+
+    // WALL
+    if (wall)
+    {
+        state = PlayerState.WALL;
+        return;
+    }
+
+    // NO AR
+    if (!chao)
+    {
+        if (velv < 0)
+            state = PlayerState.JUMP;
+        else
+            state = PlayerState.FALL;
+
+        return;
+    }
+
+    // NO CHÃO
+    if (velh != 0)
+    {
+        state = PlayerState.RUN;
+    }
+    else
+    {
+        state = PlayerState.IDLE;
+    }
+
+}
+
+//Máquina de estados do player
+state_machine = function()
+{
+	//Variável para nova sprite
+	var _new_sprite;
+	
+    switch(state)
+    {
+        case PlayerState.IDLE:
+            _new_sprite = spr_player_idle;
+        break;
+
+        case PlayerState.RUN:
+            _new_sprite = spr_player_walk;
+        break;
+
+        case PlayerState.JUMP:
+            _new_sprite = spr_jump;
+        break;
+
+        case PlayerState.FALL:
+            _new_sprite = spr_fall;
+        break;
+
+        case PlayerState.WALL:
+            _new_sprite = spr_wall;
+        break;
+
+        case PlayerState.DASH:
+            _new_sprite = spr_dash;
+        break;
+    }
+	
+	// Só troca se realmente mudou
+	if (sprite_index != _new_sprite)
+	{
+	    sprite_index = _new_sprite;
+	}
 }
 
 //Aplica colisão e movimento
@@ -205,8 +317,7 @@ double_jump = function()
 
 //Pulo na parede
 wall_jump = function()
-{
-	
+{	
 	#region //Pega os lados da parede
 	
 	//Pega em qual parede estou colidindo
@@ -448,8 +559,3 @@ attack = function()
 }
 
 #endregion
-
-
-
-
-

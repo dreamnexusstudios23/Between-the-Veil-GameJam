@@ -30,6 +30,16 @@ change_world();
 //Método de ataque
 attack();
 
+//Faz update dos estados
+update_state();
+
+//Método da máquina de estados do player
+state_machine();
+
+//Gambiarra que arruma a escala do boneco pq eu fiz ele mt pequeno ;(
+image_xscale = dir * scale_base;
+image_yscale = scale_base;
+
 #endregion
 
 //SE apertar o TAB, ativa o debug
