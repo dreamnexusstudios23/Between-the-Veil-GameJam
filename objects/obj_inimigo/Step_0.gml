@@ -12,6 +12,9 @@ pixel_perfect();
 //Aplica a máquina de estados
 state_machine();
 
+//Checa a gravidade
+grav_check();
+
 #endregion
 
 

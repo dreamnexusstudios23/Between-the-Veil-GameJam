@@ -4,11 +4,12 @@
 #region //Variáveis de controle do inimigo
 
 //Variáveis de velocidade e gravidade
-velh		= 0;
-velv		= 0;
-max_velv	= 10;
-max_velh	= 3;
-grav		= 0.4;
+velh = 0;
+velv = 0;
+grav = 0.4;
+max_velh = 2;
+max_velv = 10;
+dir = choose(-1, 1); //Escolhe pra onde começa indo
 
 //Variáveis de vida
 life		 = 1;
@@ -18,10 +19,16 @@ dmg_timer	 = dmg_cooldown;
 //Variáveis de estado
 state		   = "idle";
 t_change_state = 2; // 2 Segundos
+t_move_state   = 3; //5 segundos
 alvo		   = noone;
 collision_rain = false; //Identifica se entrou no raio
 rain_size	   = 180;
 chao		   = noone;
+
+//Variáveis do estado de perseguição
+t_chase_state = 4; //4 segundos
+t_chase_run	  = 3; //3 segundos
+t_atk		  = 1.3 // 1.3 segundos
 
 #endregion
 
@@ -36,10 +43,7 @@ damage = function()
 	
 	//SE colidir com a hitbox do ataque do player, sofre dano
 	if (place_meeting(x, y, obj_hitbox) && dmg_timer <= 0)
-	{
-		//Debug
-		show_message("fui atacado");
-		
+	{		
 		//Perco vida
 		life--;
 		
@@ -118,8 +122,15 @@ collision_check = function()
 	
 }
 
-//Máquina de estados
-state_machine = function()
+//Checa a gravidade
+grav_check = function()
+{
+	//SE não tem chão, ele aplica a gravidade
+	if (!chao) velv += grav;
+}
+
+//Checa o raio de ação
+rain_entrance_check = function()
 {
 	#region //Identificador se entrou no raio de visão do inimigo
 	//Cria o raio de ação
@@ -129,7 +140,7 @@ state_machine = function()
 	if (_player)
 	{
 		//Define o player como alvo se a instancia do player existir
-		if (instance_exists(obj_player)) alvo = _player
+		if (instance_exists(obj_player)) alvo = _player;
 		
 		//Aumenta o raio
 		rain_size = 250;
@@ -140,11 +151,14 @@ state_machine = function()
 		//SE já entrou no raio, então ele reseta o timer que muda o estado do inimigo
 		t_change_state = 2; //2 segundos
 		
-		//vai para o estado de perseguição
-		state = "chase";
+		//vai para o estado de perseguição SE já não estiver nele
+		if (state != "chase") state = "chase";
 	}
 	else
 	{
+		//Volta para o estado parado, apenas se tiver em chase
+		if (state == "chase") state = "walk";
+		
 		//SE não estiver mais no raio, ele volta ao tamanho normal
 		rain_size = 180;
 		
@@ -152,17 +166,23 @@ state_machine = function()
 		alvo = noone;
 		
 		//Identifica que saiu no raio
-		collision_rain = false;
-		
-		//Volto para o estado parado
-		state = "idle";
+		collision_rain = false;	
 	}
-	#endregion
-	
+		
+	#endregion	
+}
+
+
+//Máquina de estados
+state_machine = function()
+{
 	switch(state)
 	{
 		#region //Parado
 		case "idle":
+			
+			//Sempre checando se entrei no raio do inimigo
+			rain_entrance_check();
 			
 			//Diminui o tempo de ficar parado
 			t_change_state -= delta_time / 1000000;
@@ -178,15 +198,172 @@ state_machine = function()
 			{
 				//Muda para o estado de andando
 				state = "walk";
+				
+				//Reseta o timer
+				t_change_state = 2;
 			}
 
 		break;
 		#endregion
 		
 		#region //Andando
-		case "walk" :
+		case "walk":
 			
+			//Faz a checagem se estou no raio
+			rain_entrance_check();
+			
+			//Diminui o timer de caminhada
+			t_move_state -= delta_time / 1000000;
+			
+		    // Movimento horizontal simples
+		    velh = dir * max_velh;
+
+		    // Se bater na parede, troca direção
+		    if (place_meeting(x + sign(velh), y, obj_colisor_a))
+		    {
+		        dir *= -1;
+		    }
+			
+			//SE o timer de movimento zerar E eu não estiver no raio do inimigo, 
+			//ele pode escolher entre seguir se
+			//movendo ou ficar parado
+			if (t_move_state <= 0 && !collision_rain)
+			{
+				state = choose("idle", "walk");	
+				
+				//Reseta o timer
+				t_move_state = 3;
+			}
+
+		break;
+		#endregion
 		
+		#region //Perseguindo o player
+		case "chase":
+			
+			//Continua chegando se estou no raio
+			rain_entrance_check();
+			
+			//Velocidade volta ao normal
+			max_velh = 2;
+			
+			//Diminui o timer e limita ele
+			t_chase_state -= delta_time / 1000000;
+			t_chase_state = clamp(t_change_state, 0, 4);
+			
+			//SE eu tenho alvo
+		    if (instance_exists(alvo))
+		    {
+		        // Decide direção baseada na posição do player
+		        if (alvo.x > x)
+		        {
+		            dir = 1;
+		        }
+		        else
+		        {
+		            dir = -1;
+		        }
+
+		        // Move horizontalmente
+		        velh = dir * max_velh;
+		    }
+			
+			//Verifica a distância para o player
+			var _dist_player = point_distance(x, y, alvo.x, alvo.y);
+			
+			//SE eu estiver próximo ao player, eu entro no estado de preparando ataque
+			if (_dist_player < 100)
+			{
+				state = "load_attack";	
+			}
+			
+			//Depois de passar o tempo, ele escolhe se quer correr ou continuar em chase
+			//padrão
+			if (t_chase_state <= 0)
+			{
+				//Escolhe se quer correr ou continuar caminhando na chase
+				state = choose("chase", "run");
+				
+				//Reseta o timer
+				t_chase_state = 4;
+			}
+
+		break;
+		#endregion
+		
+		#region	//Correndo
+		case "run":
+			//Muda animação
+			
+			//Diminui o timer para mudar de estado e limita
+			t_chase_run -= delta_time--;
+			t_chase_run = clamp(t_chase_run, 0, 3);
+			
+			//Aumenta a velocidade
+			max_velh = 4;
+			
+			//Verifica a distância para o player
+			var _dist_player = point_distance(x, y, alvo.x, alvo.y);
+			
+			//SE eu estiver próximo ao player, eu entro no estado de preparando ataque
+			if (_dist_player < 100)
+			{
+				state = "load_attack";	
+			}
+			
+			//SE o timer zerar, ele volta para o estado de chase
+			if (t_chase_run <= 0)
+			{
+				state = "chase";
+				
+				//Reseta o timer
+				t_chase_run = 3;
+			}
+		
+		break;
+		#endregion
+		
+		#region //Carregando ataque
+		case "load_attack":
+			//Diminui o timer e limita ele
+			t_atk -= delta_time / 1000000;
+			
+			//Animação carregando ataque
+			
+			//Quando zerar o timer, entra no estado de ataque
+			if (t_atk <= 0)
+			{
+				state = "attack";	
+				
+				//Reseta o timer
+				t_atk = 1.3;
+			}
+			
+		break;
+		#endregion
+		
+		#region //Atacando
+		case "attack":
+			//Animação do ataque
+			
+			//Cria a hitbox com base na direção que o inimigo está olhando por último
+			if (dir < x)
+			{
+				//Distância da hitbox
+				var _offset = 70;
+				
+				//Cria hitbox para esquerda
+				instance_create_layer(x - _offset, y - sprite_height, layer, obj_hitbox_enemy);
+			}
+			else if (dir > x)
+			{
+				//Distância da hitbox
+				var _offset = 70;
+				
+				//Cria hitbox para esquerda
+				instance_create_layer(x + _offset, y - sprite_height, layer, obj_hitbox_enemy);	
+			}
+			
 		break;
 		#endregion
 	}
