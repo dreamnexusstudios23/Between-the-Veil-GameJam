@@ -120,7 +120,7 @@ collision_check = function()
 		//SE não estou colidindo com o chão, então não estou nele
 		chao = false;
 	}
-	
+
 }
 
 //Checa a gravidade

@@ -42,7 +42,6 @@ atk_cooldown = 0; //1 segundo, porém está 0 por que eu já posso começar atac
 atk_timer = atk_cooldown;
 del_hitbox = 0.3; //Leva 0.3 segundos para sumir a hitbox criada
 
-
 #endregion
 
 #region //Métodos
@@ -78,6 +77,9 @@ move = function()
 			//Pula
 			velv -= 2;
 			velv = clamp(velv, max_velv , -max_velv) //Limita a altura do pulo
+			
+			//Ativo destivo a colisão one way
+			global.one_way_collision = false;
 		}
 		
 		//Reseto meus double jumps
@@ -108,6 +110,12 @@ move = function()
 				velv += grav;
 			}
 		}
+	}
+	
+	//SE estou caindo, ativa a colisão one way
+	if (velv >= 1)
+	{
+		global.one_way_collision = true;	
 	}
 	
 }
@@ -172,6 +180,8 @@ collision_check = function()
 		chao = false;
 	}
 	
+	//Joga o player para fora das colisões
+	sai_colisao();
 }
 
 //Pulo duplo
