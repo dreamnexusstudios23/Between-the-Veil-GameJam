@@ -26,6 +26,7 @@
     {"id":{"name":"obj_saw","path":"objects/obj_saw/obj_saw.yy",},"order":2,},
     {"id":{"name":"obj_colisor_a","path":"objects/obj_colisor_a/obj_colisor_a.yy",},"order":1,},
     {"id":{"name":"spr_half_saw_side","path":"sprites/spr_half_saw_side/spr_half_saw_side.yy",},"order":3,},
+    {"id":{"name":"spr_hitbox_inimigo","path":"sprites/spr_hitbox_inimigo/spr_hitbox_inimigo.yy",},"order":12,},
     {"id":{"name":"spr_inimigo","path":"sprites/spr_inimigo/spr_inimigo.yy",},"order":11,},
     {"id":{"name":"Room1","path":"rooms/Room1/Room1.yy",},"order":0,},
   ],

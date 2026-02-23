@@ -6,8 +6,15 @@ draw_self();
 
 if (global.debug)
 {
-	//Desenha a hitbox
-	draw_rectangle(bbox_left, bbox_bottom, bbox_right, bbox_top, true);
+	//Desenha o raio de visão
+	draw_circle(x, y, rain_size, true);
+	
+	//Desenha em que estado ele está
+	draw_set_halign(1);
+	draw_set_valign(1);
+	draw_text(x, y - sprite_height, state);
+	draw_set_halign(-1);
+	draw_set_valign(-1);
 }
 
 

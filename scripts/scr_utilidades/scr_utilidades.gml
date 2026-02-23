@@ -6,7 +6,7 @@ global.debug = false;
 
 #region //Globais de itens
 
-global.pitao = true;
+global.pitao = false;
 
 global.world = false;
 
