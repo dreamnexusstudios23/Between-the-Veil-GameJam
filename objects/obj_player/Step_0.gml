@@ -24,6 +24,9 @@ dash();
 //Método do item pitao
 pitao_item();
 
+//Método de alternar entre os mundos
+change_world();
+
 #endregion
 
 //SE apertar o TAB, ativa o debug

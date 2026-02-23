@@ -8,4 +8,6 @@ global.debug = false;
 
 global.pitao = true;
 
+global.world = false;
+
 #endregion

@@ -37,6 +37,7 @@ pitao_timer	  = 5; //5 segundos
 p_timer_atual = pitao_timer;
 pitao_wall	  = false;
 
+
 #endregion
 
 #region //Métodos
@@ -50,6 +51,7 @@ inputs = function()
 	right	= keyboard_check(ord("D"));	
 	space	= keyboard_check_pressed(vk_space);
 	pitao	= keyboard_check_pressed(ord("F"));
+	change_w= keyboard_check_pressed(ord("Q"));
 }
 
 //Aplica os movimentos com base nos controles
@@ -102,7 +104,6 @@ move = function()
 		}
 	}
 	
-	show_debug_message(side_wall)
 }
 
 //Aplica colisão e movimento
@@ -348,6 +349,27 @@ pitao_item = function()
 
 	}
 
+}
+
+change_world = function()
+{
+	//Ao pressionar a tecla Q, troca entre os mundos
+	if (change_w) global.world = !global.world;
+	
+	//SE world for false, é o mundo normal, se for true, é o mundo paralelo
+	if (global.world)
+	{
+		//Torna só a layer plataform_b visivel
+		layer_set_visible("plataform_b", true);
+		layer_set_visible("plataform_a", false);
+
+	}
+	else
+	{
+		//Torna só a layer plataform_b visivel
+		layer_set_visible("plataform_b", false);
+		layer_set_visible("plataform_a", true);	
+	}
 }
 
 #endregion
