@@ -12,11 +12,17 @@ pixel_perfect();
 //Aplica a máquina de estados
 state_machine();
 
+//Atualiza animação
+update_animation();
+
 //Checa a gravidade
 grav_check();
 
 //Checa se ainda sou alvo
 targed_check();
+
+//Atualiza a direção para onde está olhando (gambiarra) :)
+image_xscale = dir * 2;
 
 #endregion
 

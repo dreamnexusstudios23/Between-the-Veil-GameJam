@@ -190,6 +190,43 @@ targed_check = function()
 	
 }
 
+//Atualiza animação
+update_animation = function()
+{
+    switch(state)
+    {
+        case "idle":
+            sprite_index = spr_enemy_idle;
+            image_speed = 1;
+        break;
+
+        case "walk":
+            sprite_index = spr_enemy_walk;
+            image_speed = 1;
+        break;
+
+        case "chase":
+            sprite_index = spr_enemy_walk;
+            image_speed = 1;
+        break;
+
+        case "run":
+            sprite_index = spr_enemy_run;
+            image_speed = 1;
+        break;
+
+        case "load_attack":
+            sprite_index = spr_enemy_load;
+            image_speed = 1;
+        break;
+
+        case "attack":
+            sprite_index = spr_enemy_attack;
+            image_speed = 1;
+        break;
+    }
+}
+
 //Máquina de estados
 state_machine = function()
 {	
@@ -313,7 +350,7 @@ state_machine = function()
 			//Muda animação
 			
 			//Diminui o timer para mudar de estado e limita
-			t_chase_run -= delta_time--;
+			t_chase_run -= delta_time / 1000000;
 			t_chase_run = clamp(t_chase_run, 0, 3);
 			
 			//Aumenta a velocidade
