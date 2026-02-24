@@ -209,11 +209,11 @@ state_machine = function()
         break;
 
         case PlayerState.JUMP:
-            _new_sprite = spr_jump;
+            _new_sprite = spr_player_jump;
         break;
 
         case PlayerState.FALL:
-            _new_sprite = spr_fall;
+            _new_sprite = spr_player_fall;
         break;
 
         case PlayerState.WALL:
