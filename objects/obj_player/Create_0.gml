@@ -87,8 +87,8 @@ move = function()
 	inputs();
 	
 	#region //Movimento e direção
-	//Movimento horizontal
-	velh = (right - left) * max_velh;
+	//Movimento horizontal SE não estou em ataque
+	if (!attacking) velh = (right - left) * max_velh;
 
 	if (velh != 0 && !wall)
 	{
@@ -104,8 +104,8 @@ move = function()
 	//SE estou no chão, eu posso pular
 	if (chao)
 	{
-		//Movimento do pulo
-		if (up)
+		//Movimento do pulo SE não estou na parede
+		if (up && !wall)
 		{
 			//Pula
 			velv -= 2;
@@ -161,15 +161,15 @@ move = function()
 //Update de estados do player
 update_state = function()
 {
-    // Se já está atacando, mantém o estado
-	if (attacking)
-	{
-	    state = PlayerState.ATTACK;
-	    return;
-	}
-
+	// SE já está atacando, mantém o estado
+    if (attacking)
+    {
+        state = PlayerState.ATTACK;
+        return;
+    }
+	
 	// Começa ataque
-	if (attack_mb && atk_timer <= 0)
+	if (attack_mb)
 	{
 	    attacking = true;
 	    state = PlayerState.ATTACK;
@@ -229,31 +229,55 @@ state_machine = function()
     switch(state)
     {
         case PlayerState.IDLE:
-            _new_sprite = spr_player_idle;
+            if (!global.world) _new_sprite = spr_player_idle;
+			else _new_sprite = spr_player_idle_mask;
         break;
+		
+		case PlayerState.ATTACK:
+	    if (!global.world) _new_sprite = spr_player_attack;
+		else _new_sprite = spr_player_attack_mask;
+
+	    velh = 0;
+
+	    // Se ainda não terminou
+	    if (image_index < image_number - 1)
+	    {
+	        image_speed = 1;
+	    }
+	    else
+	    {
+	        image_speed = 0; // PARA no último frame
+	        attacking = false;
+	    }
+		break;
 
         case PlayerState.RUN:
-            _new_sprite = spr_player_walk;
+            if (!global.world) _new_sprite = spr_player_walk;
+			else _new_sprite = spr_player_walk_mask;
         break;
 
         case PlayerState.JUMP:
-            _new_sprite = spr_player_jump;
+            if (!global.world) _new_sprite = spr_player_jump;
+			else _new_sprite = spr_player_jump_mask;
         break;
 
         case PlayerState.FALL:
-            _new_sprite = spr_player_fall;
+            if (!global.world) _new_sprite = spr_player_fall;
+			else _new_sprite = spr_player_fall_mask;
         break;
 
         case PlayerState.WALL:
-            _new_sprite = spr_player_wall;
+            if (!global.world) _new_sprite = spr_player_wall;
+			else _new_sprite = spr_player_wall_mask;
         break;
 
         case PlayerState.DASH:
-            _new_sprite = spr_player_dash;
+           _new_sprite = spr_player_dash;
         break;
 		
 		case PlayerState.PITAO:
-            _new_sprite = spr_player_pitao;
+            if (!global.world) _new_sprite = spr_player_pitao;
+			else _new_sprite = spr_player_pitao_mask;
         break;
 		
 	}
@@ -336,8 +360,8 @@ double_jump = function()
 	//SE eu não estou no chão, e ainda tenho pulos, então eu pulo de novo
 	if (!chao && qtd_jumps > 0)
 	{
-		//Se apertar a seta para cima, eu pulo e gasto meu pulo
-		if (up)
+		//Se apertar a seta para cima, eu pulo e gasto meu pulo E não estou na parede
+		if (up && !wall)
 		{
 			//Pulo
 			velv -= 2;
@@ -556,17 +580,21 @@ attack = function()
 		{
 			// esquerda
 			hit_x = x - offset;
+			//Vira o personagem para esquerda também
+			dir = -1;
 		}
 		else
 		{
 			// direita
 			hit_x = x + offset;
+			//Vira o personagem para direita também
+			dir = 1;
 		}
 		
 		// altura do ataque
-		var hit_y = y - sprite_height / 1.7;
+		var hit_y = y - sprite_height / 2;
 		
-		//Cria a hitbox
+		//Cria a hitbox SE eu estiver no 3 frame da animação
 		instance_create_layer(hit_x, hit_y, layer, obj_hitbox);
 		
 		//Reseta o tempo

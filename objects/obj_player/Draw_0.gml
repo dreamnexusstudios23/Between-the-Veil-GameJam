@@ -34,7 +34,7 @@ if (global.debug)
 	draw_set_halign(1);
 	draw_set_valign(1);
 
-	draw_text(x, y - sprite_height - 20, image_number);
+	draw_text(x, y - sprite_height - 20, state);
 
 	//Resta os draw
 	draw_set_halign(-1);
