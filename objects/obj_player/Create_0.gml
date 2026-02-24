@@ -58,6 +58,7 @@ pitao_wall	  = false;
 atk_cooldown = 0; //1 segundo, porém está 0 por que eu já posso começar atacando
 atk_timer = atk_cooldown;
 del_hitbox = 0.3; //Leva 0.3 segundos para sumir a hitbox criada
+attacking = false;
 
 #endregion
 
@@ -79,6 +80,9 @@ inputs = function()
 //Aplica os movimentos com base nos controles
 move = function()
 {
+	//Se estiver atacando eu fico parado
+	if (attacking) velh = 0;
+	
 	//Utiliza os inputs
 	inputs();
 	
@@ -157,7 +161,22 @@ move = function()
 //Update de estados do player
 update_state = function()
 {
-    // DASH tem prioridade máxima
+    // Se já está atacando, mantém o estado
+	if (attacking)
+	{
+	    state = PlayerState.ATTACK;
+	    return;
+	}
+
+	// Começa ataque
+	if (attack_mb && atk_timer <= 0)
+	{
+	    attacking = true;
+	    state = PlayerState.ATTACK;
+	    return;
+	}
+	
+	// DASH tem prioridade máxima
     if (dash_ativado)
     {
         state = PlayerState.DASH;
@@ -236,12 +255,14 @@ state_machine = function()
 		case PlayerState.PITAO:
             _new_sprite = spr_player_pitao;
         break;
-    }
+		
+	}
 	
-	// Só troca se realmente mudou
 	if (sprite_index != _new_sprite)
 	{
 	    sprite_index = _new_sprite;
+	    image_index = 0;     // <<< ESSENCIAL
+	    image_speed = 1;     // garante que animação rode
 	}
 }
 
@@ -543,7 +564,7 @@ attack = function()
 		}
 		
 		// altura do ataque
-		var hit_y = y - sprite_height / 1.5;
+		var hit_y = y - sprite_height / 1.7;
 		
 		//Cria a hitbox
 		instance_create_layer(hit_x, hit_y, layer, obj_hitbox);
