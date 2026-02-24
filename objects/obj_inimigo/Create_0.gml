@@ -11,6 +11,10 @@ max_velh = 2;
 max_velv = 10;
 dir = choose(-1, 1); //Escolhe pra onde começa indo
 
+//Variáveis de controle do tamanho
+image_xscale = 2;
+image_yscale = 2;
+
 //Variáveis de vida
 life		 = 1;
 dmg_cooldown = 0; //Já começa em 0 ou seja, podendo já ser atacado
@@ -28,7 +32,7 @@ chao		   = noone;
 //Variáveis do estado de perseguição
 t_chase_state = 4; //4 segundos
 t_chase_run	  = 3; //3 segundos
-t_atk		  = 1.3 // 1.3 segundos
+t_atk		  = 1.7 // 1.3 segundos
 del_atk		  = 0.7 // 0.7 segundos para deletar o hitbox
 
 #endregion
@@ -167,6 +171,7 @@ rain_entrance_check = function()
 	#endregion	
 }
 
+//Checa o alvo
 targed_check = function()
 {
 	//SE a instancia do player existe
@@ -187,12 +192,12 @@ targed_check = function()
 
 //Máquina de estados
 state_machine = function()
-{
+{	
 	switch(state)
 	{
 		#region //Parado
 		case "idle":
-			
+		
 			//Sempre checando se entrei no raio do inimigo
 			rain_entrance_check();
 			
@@ -220,7 +225,7 @@ state_machine = function()
 		
 		#region //Andando
 		case "walk":
-			
+		
 			//Faz a checagem se estou no raio
 			rain_entrance_check();
 			
@@ -284,7 +289,7 @@ state_machine = function()
 			var _dist_player = point_distance(x, y, alvo.x, alvo.y);
 			
 			//SE eu estiver próximo ao player, eu entro no estado de preparando ataque
-			if (_dist_player < 100)
+			if (_dist_player < 70)
 			{
 				state = "load_attack";	
 			}
@@ -318,7 +323,7 @@ state_machine = function()
 			var _dist_player = point_distance(x, y, alvo.x, alvo.y);
 			
 			//SE eu estiver próximo ao player, eu entro no estado de preparando ataque
-			if (_dist_player < 100)
+			if (_dist_player < 70)
 			{
 				state = "load_attack";	
 			}
@@ -351,7 +356,7 @@ state_machine = function()
 				state = "attack";	
 				
 				//Reseta o timer
-				t_atk = 1.3;
+				t_atk = 1.7;
 			}
 			
 		break;
@@ -365,7 +370,7 @@ state_machine = function()
 			if (dir == -1)
 			{
 				//Distância da hitbox
-				var _offset = 110;
+				var _offset = 70;
 				
 				//Cria hitbox para esquerda
 				instance_create_layer(x - _offset, y - sprite_height, layer, obj_hitbox_enemy);
@@ -373,7 +378,7 @@ state_machine = function()
 			else if (dir == 1)
 			{
 				//Distância da hitbox
-				var _offset = 50;
+				var _offset = 40;
 				
 				//Cria hitbox para esquerda
 				instance_create_layer(x + _offset, y - sprite_height, layer, obj_hitbox_enemy);	
@@ -408,6 +413,7 @@ state_machine = function()
 			
 		break;
 		#endregion
+		
 	}
 }
 
