@@ -400,6 +400,12 @@ state_machine = function()
 				}
 			}
 			
+			//Se o inimigo morreu, também destroi a hitbox
+			if (life <= 0)
+			{
+				instance_destroy(obj_hitbox_enemy);	
+			}
+			
 		break;
 		#endregion
 	}

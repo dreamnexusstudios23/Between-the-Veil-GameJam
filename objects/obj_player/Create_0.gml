@@ -20,7 +20,9 @@ enum PlayerState
     JUMP,
     FALL,
     WALL,
-    DASH
+    DASH,
+	PITAO,
+	ATTACK
 }
 
 state = PlayerState.IDLE;
@@ -162,6 +164,13 @@ update_state = function()
         return;
     }
 
+	//Quando está usando o pitao
+	if (pitao_ativado && wall)
+	{
+		state = PlayerState.PITAO;
+		return;
+	}
+
     // WALL
     if (wall)
     {
@@ -217,11 +226,15 @@ state_machine = function()
         break;
 
         case PlayerState.WALL:
-            _new_sprite = spr_wall;
+            _new_sprite = spr_player_wall;
         break;
 
         case PlayerState.DASH:
-            _new_sprite = spr_dash;
+            _new_sprite = spr_player_dash;
+        break;
+		
+		case PlayerState.PITAO:
+            _new_sprite = spr_player_pitao;
         break;
     }
 	
