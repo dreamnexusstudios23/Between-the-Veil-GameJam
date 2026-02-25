@@ -386,7 +386,7 @@ state_machine = function()
 		#region //Carregando ataque
 		case "load_attack":
 			//Diminui o timer e limita ele
-			t_atk -= delta_time / 100000;
+			t_atk -= delta_time / 1000000;
 			
 			//Fica parado
 			velh = 0;
@@ -407,8 +407,7 @@ state_machine = function()
 		
 		#region //Atacando
 		case "attack":
-			//Animação do ataque
-			
+
 			//Cria a hitbox com base na direção que o inimigo está olhando por último
 			if (dir == -1)
 			{

@@ -43,6 +43,7 @@
     {"id":{"name":"obj_saw_ver","path":"objects/obj_saw_ver/obj_saw_ver.yy",},"order":3,},
     {"id":{"name":"spr_saw_collide","path":"sprites/spr_saw_collide/spr_saw_collide.yy",},"order":6,},
     {"id":{"name":"spr_colisor_inf","path":"sprites/spr_colisor_inf/spr_colisor_inf.yy",},"order":2,},
+    {"id":{"name":"spr_enemy_load","path":"sprites/spr_enemy_load/spr_enemy_load.yy",},"order":5,},
     {"id":{"name":"spr_half_saw_ver","path":"sprites/spr_half_saw_ver/spr_half_saw_ver.yy",},"order":1,},
     {"id":{"name":"obj_saw","path":"objects/obj_saw/obj_saw.yy",},"order":2,},
     {"id":{"name":"spr_player_jump","path":"sprites/spr_player_jump/spr_player_jump.yy",},"order":3,},
