@@ -13,7 +13,7 @@ take = function()
 		if (_player_collide)
 		{
 			//Dou mais um pulo para ele
-			_player_collide.qtd_jumps++;
+			global.wall_jump = true;
 		
 			//Me destruo
 			instance_destroy(id);

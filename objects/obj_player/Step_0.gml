@@ -40,7 +40,10 @@ state_machine();
 damage_player();
 
 //Usa o efeito de dano
-flash_effect();
+update_flash();
+
+//Método que identifica o objeto que colide e aplica o efeito de flash
+flash_collision();
 
 //Gambiarra que arruma a escala do boneco pq eu fiz ele mt pequeno ;(
 image_xscale = dir * scale_base;

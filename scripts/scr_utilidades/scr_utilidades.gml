@@ -6,7 +6,7 @@ global.debug = false;
 
 #region //Globais de itens
 
-global.pitao = false;
+global.pitao = true;
 
 global.world = false;
 
@@ -20,7 +20,6 @@ global.wall_jump = false; //Pulo na parede
 global.dash		 = false; //Dash
 
 #endregion
-
 
 #region	//Functions
 
@@ -53,12 +52,52 @@ function sai_colisao()
     }
 }
 
-function flash_choice(_red = 0, _green = 0, _blue = 0)
+function init_flash()
 {
-	//Cor vermelha da piscada
-	flash_r = _red;
-	flash_g = _green;
-	flash_b = _blue;
-}	
+	// Controle do flash
+	flash_intensity = 0;      // intensidade atual
+	flash_timer = 0;          // tempo atual
+	flash_duration = 0;       // duração total
+
+	flash_r = 1;
+	flash_g = 1;
+	flash_b = 1;	
+}
+
+/// @function start_flash(_r, _g, _b, _duration, _max_intensity)
+function start_flash(_r, _g, _b, _duration, _max_intensity)
+{
+    flash_r = _r;
+    flash_g = _g;
+    flash_b = _b;
+
+    flash_duration = _duration;
+    flash_timer = _duration;
+
+    flash_intensity = _max_intensity;
+}
+
+function draw_flash()
+{
+	if (flash_intensity > 0)
+	{
+	    shader_set(sh_flash);
+
+	    var _u_flash = shader_get_uniform(sh_flash, "u_flash");
+	    var _u_color = shader_get_uniform(sh_flash, "u_flashColor");
+
+	    shader_set_uniform_f(_u_flash, flash_intensity);
+	    shader_set_uniform_f(_u_color, flash_r, flash_g, flash_b);
+
+	    draw_self();
+
+	    shader_reset();
+	}
+	else
+	{
+	    draw_self();
+	}	
+}
+
 
 #endregion

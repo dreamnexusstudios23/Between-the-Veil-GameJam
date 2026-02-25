@@ -3,6 +3,10 @@
 
 #region //Variáveis de controle do player
 
+//Variáveis de polimento visual
+dash_ready		= true; // controla se já mostrou o efeito
+pitao_feedback	= false; //Ativa o feedback visual da parede do pitao
+
 //Variáveis de velocidade e gravidade e escala
 velh		= 0;
 velv		= 0;
@@ -20,12 +24,7 @@ damage		   = false;
 invencible     = false;
 
 //Variáveis do shader piscada
-flash = 0;
-flash_time = 0;
-
-flash_r = 1;
-flash_g = 1;
-flash_b = 1;
+init_flash();
 
 //Variáveis de estado
 enum PlayerState
@@ -464,11 +463,22 @@ wall_jump = function()
 
 //Dash
 dash = function()
-{
+{	
 	// DIMINUI COOLDOWN
-	if (dash_cooldown > 0)
+	if (dash_cooldown > 0) 
 	{
+		//Diminui o timer do cooldown
 		dash_cooldown--;
+		
+		// enquanto está em cooldown, marca como não pronto
+		 dash_ready = false;
+	}
+	
+	// Quando o cooldown ACABA (transição)
+	if (dash_cooldown <= 0 && !dash_ready)
+	{
+	    dash_ready = true;
+	    start_flash(1, 0, 0.7, 20, 0.4); // roxinho suave
 	}
 	
 	// ATIVAR DASH (SE o dash não está ativado, e tem dash pra usar, aperto espaço, o cooldown
@@ -499,7 +509,7 @@ dash = function()
 		if (t_dash_atual <= 0)
 		{
 			dash_ativado = false;
-			dash_cooldown = 30; 
+			dash_cooldown = 20; 
 		}
 	}
 	
@@ -508,7 +518,6 @@ dash = function()
 //Item pitão
 pitao_item = function()
 {
-	
 	//Pega o colisor do pitao
 	var _pitao_parede_esq = place_meeting(x - 1, y, obj_pitao_colisor);
 	var _pitao_parede_dir = place_meeting(x + 1, y, obj_pitao_colisor);
@@ -518,12 +527,21 @@ pitao_item = function()
 	{
 		//Está na parede de pitão
 		pitao_wall = true;
+		//Feedback visual que está na parede para usala SE tiver o item
+		if (global.pitao && !pitao_feedback) 
+		{
+			//Meio dourado
+			start_flash(0.7, 0.85, 0, 20, 0.3);
+			//Ativa o feedback
+			pitao_feedback = true;
+		}
 	}
 	else
 	{
 		//SE sair da parede 
-		pitao_wall = false;
-		pitao_ativado = false;
+		pitao_wall	   = false;
+		pitao_ativado  = false;
+		pitao_feedback = false;
 		
 		//Reseta o timer do pitão
 		p_timer_atual = pitao_timer;
@@ -641,18 +659,36 @@ attack = function()
 }
 
 //Flash / Piscada
-flash_effect = function()
+update_flash = function()
 {
-	if (flash_time > 0)
-	{
-	    flash_time = lerp(flash_time, 0, 0.9);
-	    flash = 1;
-	}
-	else
-	{
-	    flash = 0;
-	}
-}	
+    if (flash_timer > 0)
+    {
+        flash_timer--;
+
+        var progress = flash_timer / flash_duration;
+
+        // Curva suave (ease out)
+        flash_intensity = progress * progress;
+    }
+    else
+    {
+        flash_intensity = 0;
+    }
+}
+
+//Aplica o flash conforme colisões com itens
+flash_collision = function()
+{
+	//Itens 
+	var _wall_jump = place_meeting(x, y, obj_wall_jump);
+	var _dash	   = place_meeting(x, y, obj_dash);
+	var _ex_jump   = place_meeting(x, y, obj_extra_jump);
+	
+	//Se colidir com o extra jump, fica ciano / esverdedo
+	if (_ex_jump)   start_flash(0, 1, 1, 20, 0.5);
+	if (_dash)      start_flash(1, 0, 1, 15, 0.5);
+	if (_wall_jump) start_flash(0, 0, 1, 15, 0.5);
+}
 
 //Sistema de dano sofrido
 damage_player = function()
@@ -661,20 +697,48 @@ damage_player = function()
 	var _enemy  = place_meeting(x, y, obj_inimigo);
 	var _saw	= place_meeting(x, y, obj_saw);
 	
+	#region	//Colisões
+	
 	//SE eu colidir com a hitbox do inimigo, eu perco vida e fico invencivel um tempo
-	if (_hitbox or _enemy or _saw && !damage && !invencible)
-	{
-		//Sofro dano
-		flash_time = 10 // duração da piscada (frames)
-		
+	if (_hitbox && !damage && !invencible)
+	{		
 		//Cor vermelha do flash
-		flash_choice(1, 0, 0);
+		start_flash(1, 0, 0, 15, 1);
 		
+		//Sofro o dano
 		life--;
 		
 		damage = true;
 		invencible = true;
 	}
+	
+	//SE eu colidir com a hitbox do inimigo, eu perco vida e fico invencivel um tempo
+	if (_enemy && !damage && !invencible)
+	{		
+		//Cor vermelha do flash
+		start_flash(1, 0, 0, 15, 1);
+		
+		//Sofro o dano
+		life--;
+		
+		damage = true;
+		invencible = true;
+	}
+	
+	//SE eu colidir com a hitbox do inimigo, eu perco vida e fico invencivel um tempo
+	if (_saw && !damage && !invencible)
+	{		
+		//Cor vermelha do flash
+		start_flash(1, 0, 0, 15, 1);
+		
+		//Sofro o dano
+		life--;
+		
+		damage = true;
+		invencible = true;
+	}
+	
+	#endregion
 	
 	//Fica invencivel
 	if (life_timer > 0 && damage)

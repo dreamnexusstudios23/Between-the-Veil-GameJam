@@ -13,7 +13,7 @@ take = function()
 		if (_player_collide)
 		{
 			//Dou mais um pulo para ele
-			_player_collide.qtd_jumps++;
+			global.dash = true;;
 		
 			//Me destruo
 			instance_destroy(id);
@@ -22,5 +22,11 @@ take = function()
 }
 
 #endregion
+
+
+/// @description Inserir descrição aqui
+// Você pode escrever seu código neste editor
+
+
 
 
