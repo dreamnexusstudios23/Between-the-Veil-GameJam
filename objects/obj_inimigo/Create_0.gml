@@ -12,8 +12,8 @@ max_velv = 10;
 dir = choose(-1, 1); //Escolhe pra onde começa indo
 
 //Variáveis de controle do tamanho
-image_xscale = 2;
-image_yscale = 2;
+image_xscale = 2.2;
+image_yscale = 2.2;
 
 //Variáveis de vida
 life		 = 1;
@@ -303,7 +303,7 @@ state_machine = function()
 			
 			//Diminui o timer e limita ele
 			t_chase_state -= delta_time / 1000000;
-			t_chase_state = clamp(t_change_state, 0, 4);
+			//t_chase_state = clamp(t_change_state, 0, 4);
 			
 			//SE eu tenho alvo
 		    if (instance_exists(alvo))
@@ -336,7 +336,7 @@ state_machine = function()
 			if (t_chase_state <= 0)
 			{
 				//Escolhe se quer correr ou continuar caminhando na chase
-				state = choose("chase", "run");
+				state = choose("chase", "run", "run");
 				
 				//Reseta o timer
 				t_chase_state = 4;
@@ -354,7 +354,9 @@ state_machine = function()
 			t_chase_run = clamp(t_chase_run, 0, 3);
 			
 			//Aumenta a velocidade
-			max_velh = 4;
+			max_velh = 5;
+			
+			velh = dir * max_velh;
 			
 			//Verifica a distância para o player
 			var _dist_player = point_distance(x, y, alvo.x, alvo.y);
@@ -366,7 +368,11 @@ state_machine = function()
 			}
 			
 			//SE o timer zerar, ele volta para o estado de chase
-			if (t_chase_run <= 0)
+			//Ou se colidir com algo
+			var _colidiu_dir = place_meeting(x + 1, y, obj_colisor_a);
+			var _colidiu_esq = place_meeting(x - 1, y, obj_colisor_a);
+			
+			if (t_chase_run <= 0 or _colidiu_dir or _colidiu_esq)
 			{
 				state = "chase";
 				

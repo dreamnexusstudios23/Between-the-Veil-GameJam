@@ -543,8 +543,8 @@ pitao_item = function()
 //Mecânica de trocar de mundos
 change_world = function()
 {
-	//Ao pressionar a tecla Q, troca entre os mundos
-	if (change_w) global.world = !global.world;
+	//Ao pressionar a tecla Q, troca entre os mundos SE não estiver atacando
+	if (change_w && !attacking) global.world = !global.world;
 	
 	//SE world for false, é o mundo normal, se for true, é o mundo paralelo
 	if (global.world)

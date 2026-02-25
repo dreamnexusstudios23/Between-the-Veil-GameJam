@@ -12,7 +12,7 @@ if (global.debug)
 	//Desenha em que estado ele está
 	draw_set_halign(1);
 	draw_set_valign(1);
-	draw_text(x, y - sprite_height, state);
+	draw_text(x, y - sprite_height, t_chase_state);
 	draw_set_halign(-1);
 	draw_set_valign(-1);
 }
