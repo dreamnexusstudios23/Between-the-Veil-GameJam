@@ -17,6 +17,7 @@ life		   = 3;
 cooldown_life  = 1; //1 Segundos
 life_timer	   = cooldown_life;
 damage		   = false;
+invencible     = false;
 
 //Variáveis do shader piscada
 flash = 0;
@@ -657,10 +658,11 @@ flash_effect = function()
 damage_player = function()
 {
 	var _hitbox = place_meeting(x, y, obj_hitbox_enemy);
-	//var _enemy  = place_meeting(x, y, obj_inimigo);
+	var _enemy  = place_meeting(x, y, obj_inimigo);
+	var _saw	= place_meeting(x, y, obj_saw);
 	
 	//SE eu colidir com a hitbox do inimigo, eu perco vida e fico invencivel um tempo
-	if (_hitbox && !damage)
+	if (_hitbox or _enemy or _saw && !damage && !invencible)
 	{
 		//Sofro dano
 		flash_time = 10 // duração da piscada (frames)
@@ -671,6 +673,7 @@ damage_player = function()
 		life--;
 		
 		damage = true;
+		invencible = true;
 	}
 	
 	//Fica invencivel
@@ -683,6 +686,9 @@ damage_player = function()
 	{
 		//SE for zero ou menor, ele sai do estado de dano
 		damage = false;
+		
+		//Acaba invencibilidade
+		invencible = false;
 		
 		//Fica visivel novamente
 		image_alpha = 1;

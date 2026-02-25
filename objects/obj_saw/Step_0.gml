@@ -3,9 +3,6 @@
 
 #region	//Usa os métodos
 
-//Metodo de matar o player
-damage();
-
 //Método para movimentar a serra SE, ela se movimenta
 if (saw_move) move_saw();
 

@@ -56,18 +56,6 @@ else if (side_move == "down")
 
 #region //Métodos
 
-damage = function()
-{
-	//SE colidir com o player, então mata tira uma vida dele
-	var _alvo = instance_place(x, y, obj_player);
-	
-	if (_alvo)
-	{
-		//Mata o player
-		instance_destroy(_alvo);
-	}
-}
-
 move_saw = function()
 {
 	if (saw_side == "horizontal")

@@ -15,11 +15,11 @@ move();
 //Método do pulo duplo
 double_jump();
 
-//Método de pular na parede
-wall_jump();
+//Método de pular na parede SE eu peguei a habilidade
+if (global.wall_jump) wall_jump();
 
 //Método para usar o dash
-dash();
+if (global.dash) dash();
 
 //Método do item pitao
 pitao_item();

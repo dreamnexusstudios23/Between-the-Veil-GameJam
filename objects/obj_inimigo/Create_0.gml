@@ -323,12 +323,15 @@ state_machine = function()
 		    }
 			
 			//Verifica a distância para o player
-			var _dist_player = point_distance(x, y, alvo.x, alvo.y);
+			if (instance_exists(alvo)) var _dist_player = point_distance(x, y, alvo.x, alvo.y);
 			
 			//SE eu estiver próximo ao player, eu entro no estado de preparando ataque
-			if (_dist_player < 70)
+			if (instance_exists(alvo))
 			{
-				state = "load_attack";	
+				if (_dist_player < 70)
+				{
+					state = "load_attack";	
+				}
 			}
 			
 			//Depois de passar o tempo, ele escolhe se quer correr ou continuar em chase
@@ -359,12 +362,15 @@ state_machine = function()
 			velh = dir * max_velh;
 			
 			//Verifica a distância para o player SE eu tenho alvo
-			if (alvo) var _dist_player = point_distance(x, y, alvo.x, alvo.y);
+			if (instance_exists(alvo)) var _dist_player = point_distance(x, y, alvo.x, alvo.y);
 			
 			//SE eu estiver próximo ao player, eu entro no estado de preparando ataque
-			if (_dist_player < 70)
+			if (instance_exists(alvo))
 			{
-				state = "load_attack";	
+				if (_dist_player < 70)
+				{
+					state = "load_attack";	
+				}
 			}
 			
 			//SE o timer zerar, ele volta para o estado de chase

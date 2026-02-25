@@ -6,11 +6,18 @@ global.debug = false;
 
 #region //Globais de itens
 
-global.pitao = true;
+global.pitao = false;
 
 global.world = false;
 
 global.one_way_collision = false;
+
+#endregion
+
+#region //Global de habilidades
+
+global.wall_jump = false; //Pulo na parede	
+global.dash		 = false; //Dash
 
 #endregion
 
