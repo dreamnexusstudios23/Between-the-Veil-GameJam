@@ -32,7 +32,7 @@ chao		   = noone;
 //Variáveis do estado de perseguição
 t_chase_state = 4; //4 segundos
 t_chase_run	  = 3; //3 segundos
-t_atk		  = 1.7 // 1.3 segundos
+t_atk		  = 0.6 // 1.3 segundos
 del_atk		  = 0.7 // 0.7 segundos para deletar o hitbox
 
 #endregion
@@ -222,7 +222,7 @@ update_animation = function()
 
         case "attack":
             sprite_index = spr_enemy_attack;
-            image_speed = 1;
+			image_speed = 1;
         break;
     }
 }
@@ -397,9 +397,10 @@ state_machine = function()
 			if (t_atk <= 0)
 			{
 				state = "attack";	
+				image_index = 0
 				
 				//Reseta o timer
-				t_atk = 1.7;
+				t_atk = 0.6;
 			}
 			
 		break;
@@ -412,7 +413,7 @@ state_machine = function()
 			if (dir == -1)
 			{
 				//Distância da hitbox
-				var _offset = 70;
+				var _offset = 22;
 				
 				//Cria hitbox para esquerda
 				instance_create_layer(x - _offset, y - sprite_height, layer, obj_hitbox_enemy);
@@ -420,7 +421,7 @@ state_machine = function()
 			else if (dir == 1)
 			{
 				//Distância da hitbox
-				var _offset = 40;
+				var _offset = 15;
 				
 				//Cria hitbox para esquerda
 				instance_create_layer(x + _offset, y - sprite_height, layer, obj_hitbox_enemy);	
