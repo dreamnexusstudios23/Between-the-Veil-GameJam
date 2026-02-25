@@ -46,4 +46,12 @@ function sai_colisao()
     }
 }
 
+function flash_choice(_red = 0, _green = 0, _blue = 0)
+{
+	//Cor vermelha da piscada
+	flash_r = _red;
+	flash_g = _green;
+	flash_b = _blue;
+}	
+
 #endregion

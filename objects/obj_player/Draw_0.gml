@@ -25,8 +25,26 @@ if (dash_ativado)
 }
 #endregion
 
-// Desenha normal
+#region //Desenha o shader de flash com cor personalizavel 
+
+//Usa o shader
+shader_set(sh_flash);
+
+//Pega a intensidade e a cor
+var _u_flash = shader_get_uniform(sh_flash, "u_flash");
+var _u_color = shader_get_uniform(sh_flash, "u_flashColor");
+
+//Define as variáveis
+shader_set_uniform_f(_u_flash, flash);
+shader_set_uniform_f(_u_color, flash_r, flash_g, flash_b);
+
+//Se desenha
 draw_self();
+
+//Reseta
+shader_reset();
+
+#endregion
 
 if (global.debug)
 {
@@ -34,7 +52,7 @@ if (global.debug)
 	draw_set_halign(1);
 	draw_set_valign(1);
 
-	draw_text(x, y - sprite_height - 20, state);
+	draw_text(x, y - sprite_height - 20, velv);
 
 	//Resta os draw
 	draw_set_halign(-1);

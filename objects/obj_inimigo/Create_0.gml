@@ -358,8 +358,8 @@ state_machine = function()
 			
 			velh = dir * max_velh;
 			
-			//Verifica a distância para o player
-			var _dist_player = point_distance(x, y, alvo.x, alvo.y);
+			//Verifica a distância para o player SE eu tenho alvo
+			if (alvo) var _dist_player = point_distance(x, y, alvo.x, alvo.y);
 			
 			//SE eu estiver próximo ao player, eu entro no estado de preparando ataque
 			if (_dist_player < 70)
@@ -413,7 +413,7 @@ state_machine = function()
 			if (dir == -1)
 			{
 				//Distância da hitbox
-				var _offset = 22;
+				var _offset = 45;
 				
 				//Cria hitbox para esquerda
 				instance_create_layer(x - _offset, y - sprite_height, layer, obj_hitbox_enemy);
@@ -421,7 +421,7 @@ state_machine = function()
 			else if (dir == 1)
 			{
 				//Distância da hitbox
-				var _offset = 15;
+				var _offset = 18;
 				
 				//Cria hitbox para esquerda
 				instance_create_layer(x + _offset, y - sprite_height, layer, obj_hitbox_enemy);	

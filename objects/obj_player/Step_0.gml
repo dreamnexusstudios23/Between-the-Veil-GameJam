@@ -36,6 +36,12 @@ update_state();
 //Método da máquina de estados do player
 state_machine();
 
+//Método de sofrer dano
+damage_player();
+
+//Usa o efeito de dano
+flash_effect();
+
 //Gambiarra que arruma a escala do boneco pq eu fiz ele mt pequeno ;(
 image_xscale = dir * scale_base;
 image_yscale = scale_base;

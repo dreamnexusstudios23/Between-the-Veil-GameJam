@@ -12,6 +12,20 @@ grav		= 0.4;
 dir			= 1;
 scale_base  = 1.5;
 
+//Variáveis de vida
+life		   = 3;
+cooldown_life  = 1; //1 Segundos
+life_timer	   = cooldown_life;
+damage		   = false;
+
+//Variáveis do shader piscada
+flash = 0;
+flash_time = 0;
+
+flash_r = 1;
+flash_g = 1;
+flash_b = 1;
+
 //Variáveis de estado
 enum PlayerState
 {
@@ -107,6 +121,9 @@ move = function()
 		//Movimento do pulo SE não estou na parede
 		if (up && !wall)
 		{
+			//Cria a particula
+			instance_create_depth(x, y, 100, obj_part_jump);
+			
 			//Pula
 			velv -= 2;
 			velv = clamp(velv, max_velv , -max_velv) //Limita a altura do pulo
@@ -153,6 +170,7 @@ move = function()
 	{
 		global.one_way_collision = true;	
 	}
+
 	
 	#endregion
 	
@@ -371,6 +389,7 @@ double_jump = function()
 			qtd_jumps--;
 		}
 	}
+	
 }
 
 //Pulo na parede
@@ -453,7 +472,7 @@ dash = function()
 	
 	// ATIVAR DASH (SE o dash não está ativado, e tem dash pra usar, aperto espaço, o cooldown
 	//Está zerado, e não estou na parede)
-	if (!dash_ativado && qtd_dash > 0 && space && dash_cooldown <= 0 && !wall)
+	if (!dash_ativado && qtd_dash > 0 && space && dash_cooldown <= 0 && !wall && !attacking)
 	{
 		dash_ativado = true;
 		t_dash_atual = timer_dash;
@@ -618,6 +637,66 @@ attack = function()
 			del_hitbox = 0.3;
 		}
 	}
+}
+
+//Flash / Piscada
+flash_effect = function()
+{
+	if (flash_time > 0)
+	{
+	    flash_time = lerp(flash_time, 0, 0.9);
+	    flash = 1;
+	}
+	else
+	{
+	    flash = 0;
+	}
+}	
+
+//Sistema de dano sofrido
+damage_player = function()
+{
+	var _hitbox = place_meeting(x, y, obj_hitbox_enemy);
+	//var _enemy  = place_meeting(x, y, obj_inimigo);
+	
+	//SE eu colidir com a hitbox do inimigo, eu perco vida e fico invencivel um tempo
+	if (_hitbox && !damage)
+	{
+		//Sofro dano
+		flash_time = 10 // duração da piscada (frames)
+		
+		//Cor vermelha do flash
+		flash_choice(1, 0, 0);
+		
+		life--;
+		
+		damage = true;
+	}
+	
+	//Fica invencivel
+	if (life_timer > 0 && damage)
+	{		
+		//Diminui o timer
+		life_timer -= delta_time / 1000000;
+	}
+	else
+	{
+		//SE for zero ou menor, ele sai do estado de dano
+		damage = false;
+		
+		//Fica visivel novamente
+		image_alpha = 1;
+		
+		//Reseta o timer
+		life_timer = cooldown_life;
+	}
+	
+	//SE a vida chegar a 0, o player morre
+	if (life <= 0)
+	{
+		instance_destroy(id);	
+	}
+	
 }
 
 #endregion
