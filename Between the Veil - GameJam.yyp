@@ -17,6 +17,7 @@
     {"id":{"name":"scr_utilidades","path":"scripts/scr_utilidades/scr_utilidades.yy",},"order":0,},
     {"id":{"name":"spr_hitbox","path":"sprites/spr_hitbox/spr_hitbox.yy",},"order":0,},
     {"id":{"name":"spr_player_wall","path":"sprites/spr_player_wall/spr_player_wall.yy",},"order":6,},
+    {"id":{"name":"spr_enemy_run","path":"sprites/spr_enemy_run/spr_enemy_run.yy",},"order":4,},
     {"id":{"name":"spr_player_model","path":"sprites/spr_player_model/spr_player_model.yy",},"order":0,},
     {"id":{"name":"spr_no_collision","path":"sprites/spr_no_collision/spr_no_collision.yy",},"order":4,},
     {"id":{"name":"obj_inimigo","path":"objects/obj_inimigo/obj_inimigo.yy",},"order":1,},
