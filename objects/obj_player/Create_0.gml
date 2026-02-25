@@ -683,11 +683,20 @@ flash_collision = function()
 	var _wall_jump = place_meeting(x, y, obj_wall_jump);
 	var _dash	   = place_meeting(x, y, obj_dash);
 	var _ex_jump   = place_meeting(x, y, obj_extra_jump);
+	var _pitao	   = place_meeting(x, y, obj_pitao);
+	
+	//Verifica se existe o jump extra
+	if (instance_exists(obj_extra_jump))
+	{
+		//SE sim, então acesso a variável exist dele
+		var _exist = obj_extra_jump.exist == true;
+	}
 	
 	//Se colidir com o extra jump, fica ciano / esverdedo
-	if (_ex_jump)   start_flash(0, 1, 1, 20, 0.5);
-	if (_dash)      start_flash(1, 0, 1, 15, 0.5);
-	if (_wall_jump) start_flash(0, 0, 1, 15, 0.5);
+	if (_ex_jump && _exist) start_flash(0, 1, 1, 20, 0.5);
+	if (_dash)				start_flash(1, 0, 1, 15, 0.5);
+	if (_wall_jump)			start_flash(0, 0.7, 0.7, 15, 0.5);
+	if (_pitao)				start_flash(1, 1, 1, 15, 0.3);
 }
 
 //Sistema de dano sofrido
