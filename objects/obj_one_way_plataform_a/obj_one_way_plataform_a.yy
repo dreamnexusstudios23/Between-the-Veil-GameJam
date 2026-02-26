@@ -1,13 +1,13 @@
 {
   "resourceType": "GMObject",
   "resourceVersion": "1.0",
-  "name": "obj_colisor_b",
+  "name": "obj_one_way_plataform_a",
   "spriteId": {
-    "name": "spr_colisor_b",
-    "path": "sprites/spr_colisor_b/spr_colisor_b.yy",
+    "name": "spr_one_way_plataform",
+    "path": "sprites/spr_one_way_plataform/spr_one_way_plataform.yy",
   },
   "solid": false,
-  "visible": false,
+  "visible": true,
   "managed": true,
   "spriteMaskId": null,
   "persistent": false,
@@ -28,12 +28,13 @@
   "physicsKinematic": false,
   "physicsShapePoints": [],
   "eventList": [
+    {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","isDnD":false,"eventNum":0,"eventType":8,"collisionObjectId":null,},
     {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","isDnD":false,"eventNum":0,"eventType":3,"collisionObjectId":null,},
   ],
   "properties": [],
   "overriddenProperties": [],
   "parent": {
-    "name": "obj_colisoes",
-    "path": "folders/Objects/obj_colisoes.yy",
+    "name": "obj_fases",
+    "path": "folders/Objects/obj_fases.yy",
   },
 }

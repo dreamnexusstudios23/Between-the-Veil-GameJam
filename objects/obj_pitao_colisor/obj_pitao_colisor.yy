@@ -7,7 +7,7 @@
     "path": "sprites/spr_colisor_pitao/spr_colisor_pitao.yy",
   },
   "solid": false,
-  "visible": true,
+  "visible": false,
   "managed": true,
   "spriteMaskId": null,
   "persistent": false,

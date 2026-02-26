@@ -7,7 +7,7 @@
     "path": "sprites/spr_colisor_inf/spr_colisor_inf.yy",
   },
   "solid": false,
-  "visible": true,
+  "visible": false,
   "managed": true,
   "spriteMaskId": null,
   "persistent": false,

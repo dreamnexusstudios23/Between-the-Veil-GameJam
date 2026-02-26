@@ -7,7 +7,7 @@
     "path": "sprites/spr_saw_collide/spr_saw_collide.yy",
   },
   "solid": false,
-  "visible": true,
+  "visible": false,
   "managed": true,
   "spriteMaskId": null,
   "persistent": false,

@@ -10,7 +10,12 @@ global.pitao = false;
 
 global.world = false;
 
-global.one_way_collision = false;
+//Controle das variáveis das plataformas A e B
+global.one_way_collision_a = false;
+global.plataform_a_colission = true;
+
+global.one_way_collision_b = false;
+global.plataform_b_colission = true;
 
 #endregion
 
@@ -32,7 +37,8 @@ function sai_colisao()
         if (
             place_meeting(x, y, obj_colisor_a) or
             place_meeting(x, y, obj_colisor_b) or
-            place_meeting(x, y, obj_one_way_plataform)
+            place_meeting(x, y, obj_one_way_plataform_a) or
+            place_meeting(x, y, obj_one_way_plataform_b)
         )
         {
             // Se tiver velocidade, usa ela

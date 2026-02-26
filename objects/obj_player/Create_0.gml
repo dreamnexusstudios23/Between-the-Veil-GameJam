@@ -128,8 +128,9 @@ move = function()
 			velv -= 2;
 			velv = clamp(velv, max_velv , -max_velv) //Limita a altura do pulo
 			
-			//Ativo destivo a colisão one way
-			global.one_way_collision = false;
+			//Destivo a colisão one way SE eu posso desativar
+			if (global.plataform_a_colission) global.one_way_collision_a = false;
+			if (global.plataform_b_colission) global.one_way_collision_b = false;
 		}
 		
 		//Reseto meus double jumps
@@ -168,7 +169,8 @@ move = function()
 	//SE estou caindo, ativa a colisão one way
 	if (velv >= 1)
 	{
-		global.one_way_collision = true;	
+		if (!global.plataform_a_colission) global.one_way_collision_a = true;
+		if (!global.plataform_b_colission) global.one_way_collision_b = true;	
 	}
 
 	

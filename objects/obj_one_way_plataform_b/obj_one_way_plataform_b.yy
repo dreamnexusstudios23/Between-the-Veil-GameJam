@@ -1,10 +1,10 @@
 {
   "resourceType": "GMObject",
   "resourceVersion": "1.0",
-  "name": "obj_one_way_plataform",
+  "name": "obj_one_way_plataform_b",
   "spriteId": {
-    "name": "spr_one_way_plataform",
-    "path": "sprites/spr_one_way_plataform/spr_one_way_plataform.yy",
+    "name": "spr_one_way_plataform_b",
+    "path": "sprites/spr_one_way_plataform_b/spr_one_way_plataform_b.yy",
   },
   "solid": false,
   "visible": true,
