@@ -14,6 +14,10 @@ global.world = false;
 global.one_way_collision_a = true;
 global.one_way_collision_b = true;
 
+
+//Variável que verifica se a serra está no mundo A ou B
+global.saw_world = false;
+
 #endregion
 
 #region //Global de habilidades

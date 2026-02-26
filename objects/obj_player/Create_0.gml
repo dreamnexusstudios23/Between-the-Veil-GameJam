@@ -16,6 +16,9 @@ grav		= 0.4;
 dir			= 1;
 scale_base  = 1.5;
 
+//Desativa o cursor do mouse
+window_set_cursor(cr_none);
+
 //Variáveis de vida
 life		   = 3;
 cooldown_life  = 1; //1 Segundos
@@ -749,7 +752,8 @@ damage_player = function()
 	}
 	
 	//SE eu colidir com a hitbox do inimigo, eu perco vida e fico invencivel um tempo
-	if (_saw && !damage && !invencible)
+	//SE a serra estiver no mundo normal eu tomo dano SE não estiver eu não tomo
+	if (_saw && !damage && !invencible && global.world && global.saw_world)
 	{		
 		//Cor vermelha do flash
 		start_flash(1, 0, 0, 15, 1);

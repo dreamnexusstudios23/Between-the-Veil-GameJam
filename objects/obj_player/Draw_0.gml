@@ -1,6 +1,13 @@
 /// @description Inserir descrição aqui
 // Você pode escrever seu código neste editor
 
+#region	//Desenha o ícone do mouse
+
+//Desenha o ícone na posição X e Y do mouse
+draw_sprite(spr_mouse, 0, mouse_x, mouse_y);
+
+#endregion
+
 #region	//Desenha o efeito do DASH
 // Desenha rastros só se estiver dashando
 if (dash_ativado)
