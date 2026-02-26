@@ -721,7 +721,7 @@ damage_player = function()
 {
 	var _hitbox = place_meeting(x, y, obj_hitbox_enemy);
 	var _enemy  = place_meeting(x, y, obj_inimigo);
-	var _saw	= place_meeting(x, y, obj_saw);
+	var _saw	= instance_place(x, y, obj_saw);
 	
 	#region	//Colisões
 	
@@ -752,17 +752,13 @@ damage_player = function()
 	}
 	
 	//SE eu colidir com a hitbox do inimigo, eu perco vida e fico invencivel um tempo
-	//SE a serra estiver no mundo normal eu tomo dano SE não estiver eu não tomo
-	if (_saw && !damage && !invencible && global.world && global.saw_world)
-	{		
-		//Cor vermelha do flash
-		start_flash(1, 0, 0, 15, 1);
-		
-		//Sofro o dano
-		life--;
-		
-		damage = true;
-		invencible = true;
+	if (_saw != noone && !damage && !invencible && _saw.saw_world == global.world)
+	{
+	    start_flash(1, 0, 0, 15, 1);
+
+	    life--;
+	    damage = true;
+	    invencible = true;
 	}
 	
 	#endregion

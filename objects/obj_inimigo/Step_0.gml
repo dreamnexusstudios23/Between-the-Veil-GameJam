@@ -9,6 +9,9 @@ damage();
 //Método de aplicar a colisão com o chão
 pixel_perfect();
 
+//Método de bater no colisor da serra e voltar, bate volta
+back_turn();
+
 //Aplica a máquina de estados
 state_machine();
 

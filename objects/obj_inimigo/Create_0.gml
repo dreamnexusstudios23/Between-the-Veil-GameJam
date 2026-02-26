@@ -419,7 +419,7 @@ state_machine = function()
 			if (dir == -1)
 			{
 				//Distância da hitbox
-				var _offset = 45;
+				var _offset = 70;
 				
 				//Cria hitbox para esquerda
 				instance_create_layer(x - _offset, y - sprite_height, layer, obj_hitbox_enemy);
@@ -427,7 +427,7 @@ state_machine = function()
 			else if (dir == 1)
 			{
 				//Distância da hitbox
-				var _offset = 18;
+				var _offset = 22;
 				
 				//Cria hitbox para esquerda
 				instance_create_layer(x + _offset, y - sprite_height, layer, obj_hitbox_enemy);	
@@ -463,6 +463,16 @@ state_machine = function()
 		break;
 		#endregion
 		
+	}
+}
+
+back_turn = function()
+{
+	// SE bater no colisor de serra ele volta
+	if (place_meeting(x, y, obj_saw_collide))
+	{
+		dir *= -1;          // Inverte direção
+		velh = dir * max_velh; // Atualiza a velocidade já na nova direção
 	}
 }
 
