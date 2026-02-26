@@ -11,11 +11,9 @@ global.pitao = false;
 global.world = false;
 
 //Controle das variáveis das plataformas A e B
-global.one_way_collision_a = false;
-global.plataform_a_colission = true;
+global.one_way_collision_a = true;
+global.one_way_collision_b = true;
 
-global.one_way_collision_b = false;
-global.plataform_b_colission = true;
 
 #endregion
 

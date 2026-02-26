@@ -47,6 +47,7 @@ chao = noone;
 //Variáveis para o double jump
 jumps_air = 1; //Qtd de pulos que eu tenho para dar no Ar (sem contar o pulo normal)
 qtd_jumps = jumps_air;
+one_way_disabled = false; //Cuida da colisão de plataformas entre mundos
 
 //Variáveis para o wall jump
 wall	  = false;
@@ -128,9 +129,11 @@ move = function()
 			velv -= 2;
 			velv = clamp(velv, max_velv , -max_velv) //Limita a altura do pulo
 			
-			//Destivo a colisão one way SE eu posso desativar
-			if (global.plataform_a_colission) global.one_way_collision_a = false;
-			if (global.plataform_b_colission) global.one_way_collision_b = false;
+			one_way_disabled = true;
+
+			if (!global.world) global.one_way_collision_a = false;
+			else global.one_way_collision_b = false;
+			
 		}
 		
 		//Reseto meus double jumps
@@ -166,11 +169,19 @@ move = function()
 	
 	#region //One way colisão
 	
-	//SE estou caindo, ativa a colisão one way
-	if (velv >= 1)
+	// Se eu desativei a one way
+	if (one_way_disabled)
 	{
-		if (!global.plataform_a_colission) global.one_way_collision_a = true;
-		if (!global.plataform_b_colission) global.one_way_collision_b = true;	
+	    // Só reativa quando eu começar a cair
+	    if (velv > 0)
+	    {
+	        one_way_disabled = false;
+        
+	        if (!global.world)
+	            global.one_way_collision_a = true;
+	        else
+	            global.one_way_collision_b = true;
+	    }
 	}
 
 	
@@ -592,13 +603,21 @@ change_world = function()
 		//Torna só a layer plataform_b visivel
 		layer_set_visible("plataform_b", true);
 		layer_set_visible("plataform_a", false);
+		
+		//Torna visivel só a camada de layer world b
+		layer_set_visible("world_b", true);
+		layer_set_visible("world_a", false);
 
 	}
 	else
 	{
-		//Torna só a layer plataform_b visivel
+		//Torna só a layer plataform_a visivel
 		layer_set_visible("plataform_b", false);
-		layer_set_visible("plataform_a", true);	
+		layer_set_visible("plataform_a", true);
+		
+		//Torna visivel só a camada de layer world a
+		layer_set_visible("world_b", false);
+		layer_set_visible("world_a", true);
 	}
 }
 
