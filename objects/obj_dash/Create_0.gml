@@ -7,18 +7,16 @@ take = function()
 {
 	//SE o player colidir comigo, eu dou mais um pulo extra para ele
 	var _player_collide = instance_place(x, y, obj_player);
-	
-	if (instance_exists(obj_player))
+
+	if (_player_collide)
 	{
-		if (_player_collide)
-		{
-			//Dou mais um pulo para ele
-			global.dash = true;;
+		//Dou mais um pulo para ele
+		global.dash = true;
 		
-			//Me destruo
-			instance_destroy(id);
-		}
+		//Me destruo
+		instance_destroy(id);
 	}
+	
 }
 
 #endregion

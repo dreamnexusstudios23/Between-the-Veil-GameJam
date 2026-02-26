@@ -53,17 +53,6 @@ function sai_colisao()
 		
     }
 	
-	
-	//Se COLIDIR Com as colisões, morre
-	//Dentro das colisões
-	if (
-		place_meeting(x, y, obj_colisor_a) or
-		place_meeting(x, y, obj_colisor_b) 
-	)
-	{
-		//Fazer código aqui.	
-		show_message("morreu");
-	}
 		
 }
 
