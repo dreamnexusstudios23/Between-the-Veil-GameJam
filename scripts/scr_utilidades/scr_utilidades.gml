@@ -14,7 +14,6 @@ global.world = false;
 global.one_way_collision_a = true;
 global.one_way_collision_b = true;
 
-
 #endregion
 
 #region //Global de habilidades
@@ -28,32 +27,44 @@ global.dash		 = false; //Dash
 
 function sai_colisao()
 {
-    var _max = 50; // limite de segurança
-    
-    for (var i = 0; i < _max; i++)
+	//SE colidir com as plataformas A ou B
+    if (
+        place_meeting(x, y, obj_one_way_plataform_a) or
+        place_meeting(x, y, obj_one_way_plataform_b)
+    )
     {
-        if (
-            place_meeting(x, y, obj_colisor_a) or
-            place_meeting(x, y, obj_colisor_b) or
-            place_meeting(x, y, obj_one_way_plataform_a) or
-            place_meeting(x, y, obj_one_way_plataform_b)
-        )
+		//Pega os alvos X e Y
+        var target_x = x;
+        var target_y = y;
+
+		//Se o Velv ou Velh for diferente de zero, o alvo é - 4 pixels
+        if (velh != 0) target_x -= sign(velh) * 4;
+        if (velv != 0) target_y -= sign(velv) * 4;
+
+		//SE ambos forem 0, o alvo é - 4
+        if (velh == 0 && velv == 0)
         {
-            // Se tiver velocidade, usa ela
-            if (velh != 0) x -= sign(velh);
-            if (velv != 0) y -= sign(velv);
-            
-            // Se estiver parado, empurra para cima como fallback
-            if (velh == 0 and velv == 0)
-            {
-                y -= 1;
-            }
+            target_y -= 4;
         }
-        else
-        {
-            break;
-        }
+
+		//Movimenta suavemente
+        x = lerp(x, target_x, 1);
+        y = lerp(y, target_y, 1);
+		
     }
+	
+	
+	//Se COLIDIR Com as colisões, morre
+	//Dentro das colisões
+	if (
+		place_meeting(x, y, obj_colisor_a) or
+		place_meeting(x, y, obj_colisor_b) 
+	)
+	{
+		//Fazer código aqui.	
+		show_message("morreu");
+	}
+		
 }
 
 function init_flash()
