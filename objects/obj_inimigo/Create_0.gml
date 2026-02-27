@@ -3,6 +3,10 @@
 
 #region //Variáveis de controle do inimigo
 
+//Inicia as variáveis de brilho
+//Variáveis do shader piscada
+init_flash();
+
 //Variáveis de velocidade e gravidade
 velh = 0;
 velv = 0;
@@ -16,7 +20,7 @@ image_xscale = 2.2;
 image_yscale = 2.2;
 
 //Variáveis de vida
-life		 = 1;
+life		 = 2;
 dmg_cooldown = 0; //Já começa em 0 ou seja, podendo já ser atacado
 dmg_timer	 = dmg_cooldown;
 
@@ -39,6 +43,24 @@ del_atk		  = 0.7 // 0.7 segundos para deletar o hitbox
 
 #region //Métodos
 
+//Flash / Piscada
+update_flash = function()
+{
+    if (flash_timer > 0)
+    {
+        flash_timer--;
+
+        var progress = flash_timer / flash_duration;
+
+        // Curva suave (ease out)
+        flash_intensity = progress * progress;
+    }
+    else
+    {
+        flash_intensity = 0;
+    }
+}
+
 //Sofrendo dano
 damage = function()
 {
@@ -49,6 +71,9 @@ damage = function()
 	//SE colidir com a hitbox do ataque do player, sofre dano
 	if (place_meeting(x, y, obj_hitbox) && dmg_timer <= 0)
 	{		
+		//Pisco vermelho
+		start_flash(1, 0, 0, 30, 0.4);
+		
 		//Perco vida
 		life--;
 		

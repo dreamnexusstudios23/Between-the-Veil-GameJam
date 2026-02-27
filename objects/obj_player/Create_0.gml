@@ -634,7 +634,7 @@ attack = function()
 	
 	if (attack_mb && atk_timer <= 0)
 	{
-		var offset = 40;
+		var offset = 35;
 		var hit_x;
 		
 		// Descobre lado do mouse
@@ -708,12 +708,14 @@ flash_collision = function()
 	var _dash	   = place_meeting(x, y, obj_dash);
 	var _ex_jump   = place_meeting(x, y, obj_extra_jump);
 	var _pitao	   = place_meeting(x, y, obj_pitao);
+	var _vida	   = place_meeting(x, y, obj_vida);
 	
 	//Se colidir com o extra jump, fica ciano / esverdedo
 	if (_ex_jump)			start_flash(0, 1, 1, 20, 0.5);
 	if (_dash)				start_flash(1, 0, 1, 15, 0.5);
 	if (_wall_jump)			start_flash(0, 0.7, 0.7, 15, 0.5);
 	if (_pitao)				start_flash(1, 1, 1, 15, 0.3);
+	if (_vida)				start_flash(0.7, 0, 0, 15, 0.6);
 }
 
 //Sistema de dano sofrido

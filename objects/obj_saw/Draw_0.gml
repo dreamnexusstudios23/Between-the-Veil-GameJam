@@ -4,6 +4,7 @@
 //Me desenho
 draw_self();
 
+
 if (global.debug)
 {
 	//Desenha minha hitbox

@@ -1,8 +1,11 @@
 {
   "resourceType": "GMObject",
   "resourceVersion": "1.0",
-  "name": "obj_teste_room",
-  "spriteId": null,
+  "name": "obj_vida",
+  "spriteId": {
+    "name": "spr_vida",
+    "path": "sprites/spr_vida/spr_vida.yy",
+  },
   "solid": false,
   "visible": true,
   "managed": true,
@@ -23,13 +26,12 @@
   "physicsShapePoints": [],
   "eventList": [
     {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","isDnD":false,"eventNum":0,"eventType":3,"collisionObjectId":null,},
+    {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","isDnD":false,"eventNum":0,"eventType":0,"collisionObjectId":null,},
   ],
-  "properties": [
-    {"resourceType":"GMObjectProperty","resourceVersion":"1.0","name":"level02_pitao","varType":3,"value":"0","rangeEnabled":false,"rangeMin":0.0,"rangeMax":10.0,"listItems":[],"multiselect":false,"filters":[],},
-  ],
+  "properties": [],
   "overriddenProperties": [],
   "parent": {
-    "name": "obj_fases",
-    "path": "folders/Objects/obj_fases.yy",
+    "name": "obj_itens",
+    "path": "folders/Objects/obj_itens.yy",
   },
 }

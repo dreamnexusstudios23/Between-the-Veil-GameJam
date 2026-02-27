@@ -24,6 +24,9 @@ grav_check();
 //Checa se ainda sou alvo
 targed_check();
 
+//Método do shader
+update_flash();
+
 //Atualiza a direção para onde está olhando (gambiarra) :)
 image_xscale = dir * 2;
 

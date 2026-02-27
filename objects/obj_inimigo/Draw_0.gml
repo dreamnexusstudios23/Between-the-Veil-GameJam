@@ -1,8 +1,11 @@
 /// @description Inserir descrição aqui
 // Você pode escrever seu código neste editor
 
-//Se desenha
-draw_self();
+#region //Desenha o shader de flash com cor personalizavel 
+
+draw_flash();
+
+#endregion
 
 if (global.debug)
 {
