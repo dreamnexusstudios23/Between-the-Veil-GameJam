@@ -64,7 +64,11 @@
     "eventStubScript": null,
   },
   "layers": [
+    {"resourceType":"GMImageLayer","resourceVersion":"1.0","name":"e48a89b7-8310-43c3-a10d-953792c8d490","visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"pedrinhas",},
+    {"resourceType":"GMImageLayer","resourceVersion":"1.0","name":"ce5ebc19-5c9e-4006-a066-2efc2ae0a55c","visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"parede pitao",},
+    {"resourceType":"GMImageLayer","resourceVersion":"1.0","name":"ae7b7afd-2c1f-45d9-8d9f-50b648ccb2a5","visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"parede bloqueada",},
     {"resourceType":"GMImageLayer","resourceVersion":"1.0","name":"85fabc5e-e7c2-4214-a949-64d818359ffe","visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"chao - detalhes- paredes",},
+    {"resourceType":"GMImageLayer","resourceVersion":"1.0","name":"d35b3efc-35e1-45e9-a882-636f949dcf3e","visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"Background",},
   ],
   "nineSlice": null,
   "parent": {
