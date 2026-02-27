@@ -4,11 +4,23 @@
 //Global para debug
 global.debug = false;
 
+#region	//Globais tutorial
+
+//Tutorial de mostrar a tecla para mudar de mundo
+global.tecla_cw = false;
+
+#endregion
+
+
+
 #region //Globais de itens
 
 global.pitao = true;
 
 global.world = false;
+
+//Global que só permite mudar de mundo se estiver dentro da área
+global.cw_permission = false;
 
 //Controle das variáveis das plataformas A e B
 global.one_way_collision_a = true;
@@ -56,15 +68,6 @@ function sai_colisao()
         y = lerp(y, target_y, 1);
 		
     }
-	
-	//SE colidir com as colisões morre.
-	var _colidiu_a = place_meeting(x, y, obj_colisor_a);
-	var _colidiu_b = place_meeting(x, y, obj_colisor_b);
-	
-	if (_colidiu_a or _colidiu_b)
-	{
-		life = 0;	
-	}
 	
 		
 }

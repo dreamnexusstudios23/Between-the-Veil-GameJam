@@ -1,7 +1,7 @@
 {
   "resourceType": "GMSprite",
   "resourceVersion": "1.0",
-  "name": "spr_level04_b",
+  "name": "spr_colisor_change_world",
   "bboxMode": 0,
   "collisionKind": 1,
   "type": 0,
@@ -11,15 +11,15 @@
   "collisionTolerance": 0,
   "swfPrecision": 2.525,
   "bbox_left": 0,
-  "bbox_right": 1365,
+  "bbox_right": 63,
   "bbox_top": 0,
-  "bbox_bottom": 999,
+  "bbox_bottom": 63,
   "HTile": false,
   "VTile": false,
   "For3D": false,
   "DynamicTexturePage": false,
-  "width": 1366,
-  "height": 1000,
+  "width": 64,
+  "height": 64,
   "textureGroupId": {
     "name": "Default",
     "path": "texturegroups/Default",
@@ -28,12 +28,12 @@
   "gridX": 0,
   "gridY": 0,
   "frames": [
-    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"3bb8499b-8b4e-4273-bf09-afb6953c69c2",},
+    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"40a0516a-0e90-4c2d-bc5f-deb24e7eb5c2",},
   ],
   "sequence": {
     "resourceType": "GMSequence",
     "resourceVersion": "1.4",
-    "name": "spr_level04_b",
+    "name": "spr_colisor_change_world",
     "timeUnits": 1,
     "playback": 1,
     "playbackSpeed": 30.0,
@@ -45,7 +45,7 @@
     "moments": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore<MomentsEventKeyframe>",},
     "tracks": [
       {"resourceType":"GMSpriteFramesTrack","resourceVersion":"1.0","name":"frames","spriteId":null,"keyframes":{"Keyframes":[
-            {"id":"532dc02c-5bfe-49d5-b29f-41e301a12786","Key":0.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"3bb8499b-8b4e-4273-bf09-afb6953c69c2","path":"sprites/spr_level04_b/spr_level04_b.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
+            {"id":"9dab9d49-8cb0-48d6-a1ca-a9f4aa215735","Key":0.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"40a0516a-0e90-4c2d-bc5f-deb24e7eb5c2","path":"sprites/spr_colisor_change_world/spr_colisor_change_world.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
           ],"resourceVersion":"1.0","resourceType":"KeyframeStore<SpriteFrameKeyframe>",},"trackColour":0,"inheritsTrackColour":true,"builtinName":0,"traits":0,"interpolation":1,"tracks":[],"events":[],"isCreationTrack":false,"modifiers":[],},
     ],
     "visibleRange": null,
@@ -64,14 +64,11 @@
     "eventStubScript": null,
   },
   "layers": [
-    {"resourceType":"GMImageLayer","resourceVersion":"1.0","name":"237d23b3-b907-4b67-ad01-043de7e6df53","visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"parede pitao",},
-    {"resourceType":"GMImageLayer","resourceVersion":"1.0","name":"01536bc9-548c-4133-8a34-5c71ea0f0176","visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"pedrinhas",},
-    {"resourceType":"GMImageLayer","resourceVersion":"1.0","name":"f3c7b654-7661-4187-b40d-ffea7f8b9939","visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"chao-pedas-detalhes",},
-    {"resourceType":"GMImageLayer","resourceVersion":"1.0","name":"0cad9e2e-5ae5-4264-975e-79762555ae2f","visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"background",},
+    {"resourceType":"GMImageLayer","resourceVersion":"1.0","name":"9df5d398-f407-4b39-938e-8aa0a582ac00","visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default",},
   ],
   "nineSlice": null,
   "parent": {
-    "name": "level04",
-    "path": "folders/Sprites/cenaries/level04.yy",
+    "name": "colisores",
+    "path": "folders/Sprites/colisores.yy",
   },
 }

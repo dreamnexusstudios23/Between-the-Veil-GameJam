@@ -408,6 +408,17 @@ collision_check = function()
 	
 	//Joga o player para fora das colisões
 	sai_colisao();
+	
+	
+	//SE estou dentro da área de mudar de mundo, então eu posso mudar
+	if (place_meeting(x, y, obj_change_world))
+	{
+		global.cw_permission = true;	
+	}
+	else //SE não tiver na área não posso mudar
+	{
+		global.cw_permission = false;	
+	}
 }
 
 //Pulo duplo
@@ -620,7 +631,7 @@ pitao_item = function()
 change_world = function()
 {
 	//Ao pressionar a tecla Q, troca entre os mundos SE não estiver atacando
-	if (change_w && !attacking) global.world = !global.world;
+	if (change_w && !attacking && global.cw_permission) global.world = !global.world;
 	
 	//SE world for false, é o mundo normal, se for true, é o mundo paralelo
 	if (global.world)
