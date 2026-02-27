@@ -11,6 +11,13 @@ if (keyboard_check_pressed(ord("R")))
 	
 	//SE eu to na fase 2 eu perco o pitão
 	if (level02_pitao) global.pitao = false;
+	
+	//SE tiver no level 01 reseta tudo
+	if (level01_jump_dash)
+	{
+		global.dash = false;
+		global.wall_jump = false;
+	}
 }
 
 

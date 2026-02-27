@@ -15,7 +15,7 @@ global.tecla_cw = false;
 
 #region //Globais de itens
 
-global.pitao = true;
+global.pitao = false;
 
 global.world = false;
 
@@ -34,8 +34,8 @@ global.saw_world = false;
 
 #region //Global de habilidades
 
-global.wall_jump = true; //Pulo na parede	
-global.dash		 = true; //Dash
+global.wall_jump = false; //Pulo na parede	
+global.dash		 = false; //Dash
 
 #endregion
 
