@@ -47,6 +47,9 @@ state = PlayerState.IDLE;
 //Variáveis de controle de colisão
 chao = noone;
 
+//Variável de queda livre
+caindo = false;
+
 //Variáveis para o double jump
 jumps_air = 1; //Qtd de pulos que eu tenho para dar no Ar (sem contar o pulo normal)
 qtd_jumps = jumps_air;
@@ -148,6 +151,9 @@ move = function()
 	}
 	else
 	{	
+		//SE não estou no chão, eu estou caindo
+		caindo = true;
+		
 		//SE estou na parede a gravidade é menor
 		if (wall)
 		{
@@ -185,6 +191,22 @@ move = function()
 	        else
 	            global.one_way_collision_b = true;
 	    }
+	}
+	
+	//SE eu estou no chão e caindo ainda é true, eu crio a particula
+	//e SE a particula foi criada, então não estou caindo mais.
+	if (chao && caindo)
+	{
+		if (instance_exists(obj_part_fall))
+		{
+			//Não estou mais caindo
+			caindo = false;
+		}
+		else
+		{
+			//Crio a particula	
+			instance_create_depth(x, y, 100, obj_part_fall);
+		}
 	}
 
 	
