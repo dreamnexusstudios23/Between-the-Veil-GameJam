@@ -187,7 +187,7 @@ rain_entrance_check = function()
 		if (state == "chase") state = "walk";
 		
 		//SE não estiver mais no raio, ele volta ao tamanho normal
-		rain_size = 180;
+		rain_size = 110;
 		
 		//Identifica que saiu no raio
 		collision_rain = false;	

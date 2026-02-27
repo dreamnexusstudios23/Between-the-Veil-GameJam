@@ -634,7 +634,7 @@ attack = function()
 	
 	if (attack_mb && atk_timer <= 0)
 	{
-		var offset = 35;
+		var offset = 45;
 		var hit_x;
 		
 		// Descobre lado do mouse

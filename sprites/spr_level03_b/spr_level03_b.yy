@@ -1,7 +1,7 @@
 {
   "resourceType": "GMSprite",
   "resourceVersion": "1.0",
-  "name": "spr_level03",
+  "name": "spr_level03_b",
   "bboxMode": 0,
   "collisionKind": 1,
   "type": 0,
@@ -33,7 +33,7 @@
   "sequence": {
     "resourceType": "GMSequence",
     "resourceVersion": "1.4",
-    "name": "spr_level03",
+    "name": "spr_level03_b",
     "timeUnits": 1,
     "playback": 1,
     "playbackSpeed": 30.0,
@@ -45,7 +45,7 @@
     "moments": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore<MomentsEventKeyframe>",},
     "tracks": [
       {"resourceType":"GMSpriteFramesTrack","resourceVersion":"1.0","name":"frames","spriteId":null,"keyframes":{"Keyframes":[
-            {"id":"348d7867-7038-466b-907f-1b18dfe9c8b4","Key":0.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"e36d9df8-630b-4544-898d-1c664c2a6d18","path":"sprites/spr_level03/spr_level03.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
+            {"id":"34fbc16c-5193-413b-a26c-46c21e858efe","Key":0.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"e36d9df8-630b-4544-898d-1c664c2a6d18","path":"sprites/spr_level03_b/spr_level03_b.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
           ],"resourceVersion":"1.0","resourceType":"KeyframeStore<SpriteFrameKeyframe>",},"trackColour":0,"inheritsTrackColour":true,"builtinName":0,"traits":0,"interpolation":1,"tracks":[],"events":[],"isCreationTrack":false,"modifiers":[],},
     ],
     "visibleRange": null,
@@ -65,7 +65,6 @@
   },
   "layers": [
     {"resourceType":"GMImageLayer","resourceVersion":"1.0","name":"6fcf71a9-ff3c-400e-989d-10e7a20475a6","visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"Layer 1",},
-    {"resourceType":"GMImageLayer","resourceVersion":"1.0","name":"a7eeb371-169f-487e-be4f-a603d0f6b2d1","visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"parede",},
     {"resourceType":"GMImageLayer","resourceVersion":"1.0","name":"b9cb1419-1761-4f93-9f4b-29bb998dc576","visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"pedrinhas",},
     {"resourceType":"GMImageLayer","resourceVersion":"1.0","name":"fb9e0600-3fc0-4bd4-867e-58081e010432","visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"chao - paredes- detalhes",},
     {"resourceType":"GMImageLayer","resourceVersion":"1.0","name":"12332723-68f0-42f6-805c-1a45011a8753","visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"Background",},

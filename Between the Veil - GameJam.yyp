@@ -57,6 +57,7 @@
     {"id":{"name":"spr_vida","path":"sprites/spr_vida/spr_vida.yy",},"order":14,},
     {"id":{"name":"spr_player_dash","path":"sprites/spr_player_dash/spr_player_dash.yy",},"order":7,},
     {"id":{"name":"rm_level03","path":"rooms/rm_level03/rm_level03.yy",},"order":4,},
+    {"id":{"name":"spr_level03_b","path":"sprites/spr_level03_b/spr_level03_b.yy",},"order":1,},
     {"id":{"name":"spr_level02_b","path":"sprites/spr_level02_b/spr_level02_b.yy",},"order":1,},
     {"id":{"name":"obj_pitao","path":"objects/obj_pitao/obj_pitao.yy",},"order":3,},
     {"id":{"name":"obj_player","path":"objects/obj_player/obj_player.yy",},"order":1,},
@@ -99,11 +100,11 @@
     "children": [],
   },
   "RoomOrderNodes": [
+    {"roomId":{"name":"rm_level03","path":"rooms/rm_level03/rm_level03.yy",},},
     {"roomId":{"name":"rm_level02","path":"rooms/rm_level02/rm_level02.yy",},},
     {"roomId":{"name":"rm_level01","path":"rooms/rm_level01/rm_level01.yy",},},
     {"roomId":{"name":"rm_tutorial","path":"rooms/rm_tutorial/rm_tutorial.yy",},},
     {"roomId":{"name":"rm_modelo","path":"rooms/rm_modelo/rm_modelo.yy",},},
-    {"roomId":{"name":"rm_level03","path":"rooms/rm_level03/rm_level03.yy",},},
   ],
   "Folders": [
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Animation Curves","folderPath":"folders/Animation Curves.yy","order":12,},

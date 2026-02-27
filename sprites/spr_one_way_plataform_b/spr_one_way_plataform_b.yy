@@ -66,7 +66,31 @@
   "layers": [
     {"resourceType":"GMImageLayer","resourceVersion":"1.0","name":"e50ff3c5-e56d-4132-bb30-8ce67c470bb6","visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default",},
   ],
-  "nineSlice": null,
+  "nineSlice": {
+    "left": 13,
+    "top": 3,
+    "right": 13,
+    "bottom": 4,
+    "guideColour": [
+      4294902015,
+      4294902015,
+      4294902015,
+      4294902015,
+    ],
+    "highlightColour": 1728023040,
+    "highlightStyle": 0,
+    "enabled": true,
+    "tileMode": [
+      1,
+      1,
+      1,
+      1,
+      1,
+    ],
+    "resourceVersion": "1.0",
+    "loadedVersion": null,
+    "resourceType": "GMNineSliceData",
+  },
   "parent": {
     "name": "colisores",
     "path": "folders/Sprites/colisores.yy",
