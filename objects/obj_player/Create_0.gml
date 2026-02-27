@@ -756,7 +756,7 @@ damage_player = function()
 	{
 	    start_flash(1, 0, 0, 15, 1);
 
-	    life--;
+	    life -= 2;
 	    damage = true;
 	    invencible = true;
 	}
