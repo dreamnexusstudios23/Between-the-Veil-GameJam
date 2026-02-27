@@ -57,6 +57,15 @@ function sai_colisao()
 		
     }
 	
+	//SE colidir com as colisões morre.
+	var _colidiu_a = place_meeting(x, y, obj_colisor_a);
+	var _colidiu_b = place_meeting(x, y, obj_colisor_b);
+	
+	if (_colidiu_a or _colidiu_b)
+	{
+		life = 0;	
+	}
+	
 		
 }
 

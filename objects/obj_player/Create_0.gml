@@ -152,7 +152,7 @@ move = function()
 		if (wall)
 		{
 			//Diminui a gravidade
-			grav = 0.2;
+			grav = 0.04;
 			//Aplica a gravidade
 			velv += grav;
 		}

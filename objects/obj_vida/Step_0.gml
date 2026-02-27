@@ -15,7 +15,8 @@ if (instance_exists(obj_player))
 {
 	if (instance_place(x, y, obj_player))
 	{
-		obj_player.life++;
+		//Só ganho vida se ela ainda não estiver no máximo
+		if (obj_player.life < 3) obj_player.life++;
 		
 		//Ai me destruo
 		instance_destroy(id);
