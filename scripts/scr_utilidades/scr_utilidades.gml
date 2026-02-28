@@ -11,7 +11,11 @@ global.tecla_cw = false;
 
 #endregion
 
+#region	//Global de cutscene
 
+global.cutscene = false;
+
+#endregion
 
 #region //Globais de itens
 

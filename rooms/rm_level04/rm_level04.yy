@@ -34,6 +34,9 @@
         {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_138DE28D","properties":[],"isDnd":false,"objectId":{"name":"obj_indicar_cw","path":"objects/obj_indicar_cw/obj_indicar_cw.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":1256.0,"y":582.0,},
         {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_44030186","properties":[],"isDnd":false,"objectId":{"name":"obj_indicar_cw","path":"objects/obj_indicar_cw/obj_indicar_cw.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":141.0,"y":674.0,},
         {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_3F5652C7","properties":[],"isDnd":false,"objectId":{"name":"obj_indicar_cw","path":"objects/obj_indicar_cw/obj_indicar_cw.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":206.0,"y":158.0,},
+        {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_59CF95C3","properties":[
+            {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","propertyId":{"name":"seq","path":"objects/obj_change_lvl/obj_change_lvl.yy",},"objectId":{"name":"obj_change_lvl","path":"objects/obj_change_lvl/obj_change_lvl.yy",},"value":"sq_fade_out_04",},
+          ],"isDnd":false,"objectId":{"name":"obj_change_lvl","path":"objects/obj_change_lvl/obj_change_lvl.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":2.46875,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":825.0,"y":-40.0,},
       ],"visible":true,"depth":0,"userdefinedDepth":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritVisibility":true,"inheritSubLayers":true,"gridX":1,"gridY":1,"layers":[],"hierarchyFrozen":false,"effectEnabled":true,"effectType":null,"properties":[],},
     {"resourceType":"GMRInstanceLayer","resourceVersion":"1.0","name":"player","instances":[
         {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_3BD37D3E_5","properties":[],"isDnd":false,"objectId":{"name":"obj_player","path":"objects/obj_player/obj_player.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":648.0,"y":951.0,},
@@ -225,7 +228,7 @@
     {"resourceType":"GMRBackgroundLayer","resourceVersion":"1.0","name":"Background","spriteId":{"name":"spr_fundo","path":"sprites/spr_fundo/spr_fundo.yy",},"colour":4294967295,"x":0,"y":0,"htiled":true,"vtiled":true,"hspeed":1.0,"vspeed":1.0,"stretch":false,"animationFPS":30.0,"animationSpeedType":0,"userdefinedAnimFPS":false,"visible":true,"depth":1100,"userdefinedDepth":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritVisibility":true,"inheritSubLayers":true,"gridX":32,"gridY":32,"layers":[],"hierarchyFrozen":false,"effectEnabled":true,"effectType":null,"properties":[],},
   ],
   "inheritLayers": false,
-  "creationCodeFile": "",
+  "creationCodeFile": "rooms/rm_level04/RoomCreationCode.gml",
   "inheritCode": false,
   "instanceCreationOrder": [
     {"name":"inst_3BD37D3E_5","path":"rooms/rm_level04/rm_level04.yy",},
@@ -342,6 +345,7 @@
     {"name":"inst_138DE28D","path":"rooms/rm_level04/rm_level04.yy",},
     {"name":"inst_44030186","path":"rooms/rm_level04/rm_level04.yy",},
     {"name":"inst_3F5652C7","path":"rooms/rm_level04/rm_level04.yy",},
+    {"name":"inst_59CF95C3","path":"rooms/rm_level04/rm_level04.yy",},
   ],
   "inheritCreationOrder": false,
   "sequenceId": null,

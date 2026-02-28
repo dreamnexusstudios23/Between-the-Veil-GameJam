@@ -9,41 +9,41 @@ pixel_perfect();
 //Checa se estou no chão
 collision_check();
 
-//Método de movimento
-move();
+//Método de movimento (SE não estou em cutscene)
+if (!global.cutscene) move();
 
 //Método do pulo duplo
-double_jump();
+if (!global.cutscene) double_jump();
 
 //Método de pular na parede SE eu peguei a habilidade
-if (global.wall_jump) wall_jump();
+if (global.wall_jump && !global.cutscene) wall_jump();
 
 //Método para usar o dash
-if (global.dash) dash();
+if (global.dash && !global.cutscene) dash();
 
 //Método do item pitao
-pitao_item();
+if (!global.cutscene) pitao_item();
 
 //Método de alternar entre os mundos
-change_world();
+if (!global.cutscene) change_world();
 
 //Método de ataque
-attack();
+if (!global.cutscene) attack();
 
 //Faz update dos estados
-update_state();
+if (!global.cutscene) update_state();
 
 //Método da máquina de estados do player
-state_machine();
+if (!global.cutscene) state_machine();
 
 //Método de sofrer dano
-damage_player();
+if (!global.cutscene) damage_player();
 
 //Usa o efeito de dano
-update_flash();
+if (!global.cutscene) update_flash();
 
 //Método que identifica o objeto que colide e aplica o efeito de flash
-flash_collision();
+if (!global.cutscene) flash_collision();
 
 //Gambiarra que arruma a escala do boneco pq eu fiz ele mt pequeno ;(
 image_xscale = dir * scale_base;
