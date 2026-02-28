@@ -60,7 +60,7 @@
   "eventToFunction": {},
   "eventStubScript": null,
   "parent": {
-    "name": "Sequences",
-    "path": "folders/Sequences.yy",
+    "name": "fades",
+    "path": "folders/Sequences/fades.yy",
   },
 }

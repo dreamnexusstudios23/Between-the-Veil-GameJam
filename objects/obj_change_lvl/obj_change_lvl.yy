@@ -7,7 +7,7 @@
     "path": "sprites/spr_muda_lvl/spr_muda_lvl.yy",
   },
   "solid": false,
-  "visible": true,
+  "visible": false,
   "managed": true,
   "spriteMaskId": null,
   "persistent": false,
@@ -27,8 +27,22 @@
   "eventList": [
     {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","isDnD":false,"eventNum":0,"eventType":3,"collisionObjectId":null,},
     {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","isDnD":false,"eventNum":0,"eventType":0,"collisionObjectId":null,},
+    {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","isDnD":false,"eventNum":0,"eventType":2,"collisionObjectId":null,},
   ],
-  "properties": [],
+  "properties": [
+    {"resourceType":"GMObjectProperty","resourceVersion":"1.0","name":"seq","varType":5,"value":"noone","rangeEnabled":false,"rangeMin":0.0,"rangeMax":10.0,"listItems":[
+        "sq_fade_out_tutorial",
+        "sq_fade_out_01",
+        "sq_fade_out_02",
+        "sq_fade_out_03",
+        "sq_fade_out_04",
+      ],"multiselect":false,"filters":[
+        "GMSequence",
+      ],},
+    {"resourceType":"GMObjectProperty","resourceVersion":"1.0","name":"rm_choice","varType":5,"value":"noone","rangeEnabled":false,"rangeMin":0.0,"rangeMax":10.0,"listItems":[],"multiselect":false,"filters":[
+        "GMRoom",
+      ],},
+  ],
   "overriddenProperties": [],
   "parent": {
     "name": "obj_colisoes",
