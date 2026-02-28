@@ -8,6 +8,13 @@ if (!audio_is_playing(music))
 	audio_play_sound(music, 0, true);
 }
 
+//Para a musica anterior
+if (music == snd_lvl_3_4)
+{
+	//Para a anterior
+	audio_stop_sound(snd_lvl_t_1_2);
+}
+
 //Variáveis para screenshake
 treme = 0;
 

@@ -609,6 +609,7 @@ pitao_item = function()
 		pitao_wall	   = false;
 		pitao_ativado  = false;
 		pitao_feedback = false;
+		pitao_sound = false;
 		
 		//Reseta o timer do pitão
 		p_timer_atual = pitao_timer;
@@ -628,7 +629,7 @@ pitao_item = function()
 		//SE ainda não tocou o som então toca
 		if (!pitao_sound)
 		{
-			audio_play_sound(sfx_pitao_use, 8, false, 0.6);
+			audio_play_sound(sfx_pitao_use, 3, false, 0.6);
 			
 			pitao_sound = true;
 		}
@@ -645,7 +646,7 @@ pitao_item = function()
 	if (p_timer_atual <= 0)
 	{
 		//Toca o som de cair
-		audio_play_sound(sfx_drop_pitao, 8, false, 1);
+		audio_play_sound(sfx_drop_pitao, 3, false, 1);
 		
 		pitao_ativado = false;
 		pitao_wall = false;
@@ -790,7 +791,7 @@ flash_collision = function()
 	{
 		//Aviso sonoro
 		//Toca o som de quando tem mais um dash
-		audio_play_sound(sfx_extra_jump, 7, false, 2, 0, 2);
+		audio_play_sound(sfx_extra_jump, 2, false, 2, 0, 2);
 		start_flash(0, 1, 1, 20, 0.5);
 	}
 	
