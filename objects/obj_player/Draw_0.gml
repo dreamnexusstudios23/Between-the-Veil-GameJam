@@ -58,7 +58,26 @@ if (global.tecla_cw)
 	);	
 }
 
+//Mostra a tecla F na cabeça quando estou em uma parede de pitão, e tenho o item
+if (pitao_wall && global.pitao)
+{
+	var offset = cos(float_time) * 3; // 3 = altura do movimento (bem leve)
+
+	draw_sprite_ext(
+		spr_f,
+		1,
+		x,
+		y - sprite_height - 10 + offset,
+		0.4,
+		0.4,
+		0,
+		c_white,
+		1
+	);	
+}
+
 #endregion
+
 
 if (global.debug)
 {
@@ -66,7 +85,7 @@ if (global.debug)
 	draw_set_halign(1);
 	draw_set_valign(1);
 
-	draw_text(x, y - sprite_height - 20, life);
+	draw_text(x, y - sprite_height - 20, global.cutscene);
 
 	//Resta os draw
 	draw_set_halign(-1);
