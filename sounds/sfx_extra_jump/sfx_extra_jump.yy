@@ -1,7 +1,7 @@
 {
   "resourceType": "GMSound",
   "resourceVersion": "1.0",
-  "name": "sfx_item_pickup",
+  "name": "sfx_extra_jump",
   "audioGroupId": {
     "name": "audiogroup_default",
     "path": "audiogroups/audiogroup_default",
@@ -14,8 +14,8 @@
   "bitRate": 128,
   "volume": 1.0,
   "preload": false,
-  "soundFile": "sfx_item_pickup.wav",
-  "duration": 1.091315,
+  "soundFile": "sfx_extra_jump.MP3",
+  "duration": 1.071,
   "parent": {
     "name": "efeitos_sonoros",
     "path": "folders/sound/efeitos_sonoros.yy",

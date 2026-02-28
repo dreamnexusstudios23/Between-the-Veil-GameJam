@@ -776,7 +776,7 @@ flash_collision = function()
 	{
 		//Aviso sonoro
 		//Toca o som de quando tem mais um dash
-		audio_play_sound(sfx_dash, 5, false, 0.5, 0, 3);
+		audio_play_sound(sfx_extra_jump, 7, false, 2, 0, 2);
 		start_flash(0, 1, 1, 20, 0.5);
 	}
 	

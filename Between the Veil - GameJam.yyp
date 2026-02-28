@@ -98,6 +98,7 @@
     {"id":{"name":"obj_tutorial_pitao","path":"objects/obj_tutorial_pitao/obj_tutorial_pitao.yy",},"order":5,},
     {"id":{"name":"spr_colisor","path":"sprites/spr_colisor/spr_colisor.yy",},"order":0,},
     {"id":{"name":"spr_player_wall_mask","path":"sprites/spr_player_wall_mask/spr_player_wall_mask.yy",},"order":2,},
+    {"id":{"name":"sfx_extra_jump","path":"sounds/sfx_extra_jump/sfx_extra_jump.yy",},"order":18,},
     {"id":{"name":"obj_teste_room","path":"objects/obj_teste_room/obj_teste_room.yy",},"order":1,},
     {"id":{"name":"obj_tutorial_cw","path":"objects/obj_tutorial_cw/obj_tutorial_cw.yy",},"order":3,},
     {"id":{"name":"sfx_enemy_death_02","path":"sounds/sfx_enemy_death_02/sfx_enemy_death_02.yy",},"order":13,},

@@ -50,7 +50,6 @@ take = function()
 		exist_timer = 3; // 3 segundos
 	}
 	
-	show_debug_message(exist_timer);
 }
 
 #endregion
