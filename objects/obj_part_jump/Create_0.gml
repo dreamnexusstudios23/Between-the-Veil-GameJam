@@ -5,7 +5,7 @@
 image_alpha = 0.9;
 
 //Modifica a altura
-image_xscale = 2;
-image_yscale = 2;
+image_xscale = 1;
+image_yscale = 1;
 
 
