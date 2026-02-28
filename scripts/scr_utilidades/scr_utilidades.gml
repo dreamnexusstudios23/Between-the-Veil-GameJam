@@ -39,8 +39,8 @@ global.saw_world = false;
 
 #region //Global de habilidades
 
-global.wall_jump = true; //Pulo na parede	
-global.dash		 = true; //Dash
+global.wall_jump = false; //Pulo na parede	
+global.dash		 = false; //Dash
 
 #endregion
 

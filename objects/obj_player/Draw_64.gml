@@ -17,17 +17,22 @@ if (!global.cutscene)
 		_pos_x += 35;
 	}
 	
-	//Posição X Espaçamento Dash
-	var _dash_x = 0;
 	
-	//Desenha a quantidade de Dash
-	repeat(qtd_dash)
+	//Só desenha o dash se eu já desbloqueei
+	if (global.dash)
 	{
-		//Desenha a sprite de dash	
-		draw_sprite_ext(spr_dash_HUD, 0, 20 + _dash_x, 45, 2, 2, image_angle, image_blend, image_alpha);
+		//Posição X Espaçamento Dash
+		var _dash_x = 0;
+	
+		//Desenha a quantidade de Dash
+		repeat(qtd_dash)
+		{
+			//Desenha a sprite de dash	
+			draw_sprite_ext(spr_dash_HUD, 0, 20 + _dash_x, 45, 2, 2, image_angle, image_blend, image_alpha);
 		
-		//Sempre da um espaço entre os icones
-		_dash_x += 35;
+			//Sempre da um espaço entre os icones
+			_dash_x += 35;
+		}
 	}
 }
 
