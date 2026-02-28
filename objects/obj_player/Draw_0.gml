@@ -38,6 +38,28 @@ draw_flash();
 
 #endregion
 
+#region //Desenha a tecla de mudar de mundo na cabeça do player
+
+// SE estou na zona da tecla, ela aparece na minha cabeça
+if (global.tecla_cw)
+{
+	var offset = cos(float_time) * 3; // 3 = altura do movimento (bem leve)
+
+	draw_sprite_ext(
+		spr_q,
+		1,
+		x,
+		y - sprite_height - 10 + offset,
+		0.4,
+		0.4,
+		0,
+		c_white,
+		1
+	);	
+}
+
+#endregion
+
 if (global.debug)
 {
 	//Alinhando o texto

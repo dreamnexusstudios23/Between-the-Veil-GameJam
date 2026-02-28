@@ -26,6 +26,9 @@ life_timer	   = cooldown_life;
 damage		   = false;
 invencible     = false;
 
+//variáveis de fazer a tecla Q na cabeça do player flutuar
+float_time = 0;
+
 //Variáveis do shader piscada
 init_flash();
 

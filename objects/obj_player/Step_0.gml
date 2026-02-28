@@ -9,6 +9,9 @@ pixel_perfect();
 //Checa se estou no chão
 collision_check();
 
+//Desenha a tecla na cabeça do player (gambiarra kkk)
+global.tecla_cw = place_meeting(x, y, obj_change_world);
+
 //Método de movimento (SE não estou em cutscene)
 if (!global.cutscene) move();
 
@@ -48,6 +51,9 @@ if (!global.cutscene) flash_collision();
 //Gambiarra que arruma a escala do boneco pq eu fiz ele mt pequeno ;(
 image_xscale = dir * scale_base;
 image_yscale = scale_base;
+
+//Faz a tecla flutuar na cabeça do player
+float_time += 0.05; 
 
 #endregion
 
