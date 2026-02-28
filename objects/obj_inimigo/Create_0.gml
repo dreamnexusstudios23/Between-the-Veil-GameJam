@@ -72,7 +72,7 @@ damage = function()
 	if (place_meeting(x, y, obj_hitbox) && dmg_timer <= 0)
 	{		
 		//Toca o som de dano
-		audio_play_sound(sfx_damage_monster, 1, false, 0.6);
+		audio_play_sound(sfx_enemy_death_01, 1, false, 0.6, 0, 1.5);
 		
 		//Treme um pouco a tela
 		tremor(5);
@@ -92,8 +92,10 @@ damage = function()
 	//SE a vida chegar a 0 eu morro
 	if (life <= 0)
 	{
-		//Toca o som de dano
-		audio_play_sound(sfx_damage_monster, 1, false, 0.6, 0, 0.3);
+		//Toca o som de morte
+		var _morte_sound = choose(sfx_enemy_death_01, sfx_enemy_death_02);
+		
+		audio_play_sound(_morte_sound, 1, false, 1);
 		
 		//Treme mais a tela
 		tremor(7);
@@ -458,13 +460,16 @@ state_machine = function()
 			//Fica parado
 			velh = 0;
 			
-			//Animação carregando ataque
-			
 			//Quando zerar o timer, entra no estado de ataque
 			if (t_atk <= 0)
 			{
 				state = "attack";	
 				image_index = 0
+				
+				//Toca o som de hit do inimigo
+				var _hit_sound = choose(sfx_enemy_hit_01, sfx_enemy_hit_02, sfx_enemy_hit_03);
+				var _pitch     = random_range(1, 1.6);
+				audio_play_sound(_hit_sound, 1, false, 0.6, 0, _pitch);
 				
 				//Reseta o timer
 				t_atk = 0.6;
@@ -475,12 +480,12 @@ state_machine = function()
 		
 		#region //Atacando
 		case "attack":
-
+			
 			//Cria a hitbox com base na direção que o inimigo está olhando por último
 			if (dir == -1)
 			{
 				//Distância da hitbox
-				var _offset = 70;
+				var _offset = 57;
 				
 				//Cria hitbox para esquerda
 				instance_create_layer(x - _offset, y - sprite_height, layer, obj_hitbox_enemy);

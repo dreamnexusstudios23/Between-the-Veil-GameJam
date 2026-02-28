@@ -27,6 +27,9 @@ take = function()
 	//Se não existo, diminui o timer para voltar a existir
 	if (!exist)
 	{
+		//fico sem colisão
+		mask_index = spr_no_collision;
+		
 		//Fico invisivel
 		image_alpha = 0;
 		
@@ -36,6 +39,9 @@ take = function()
 	//SE o timer zerar, volto a existir e reseto o timer
 	if (exist_timer <= 0)
 	{
+		//Volto a ter colisão
+		mask_index = spr_jump_extra;
+		
 		exist = true;
 		
 		//Volto a ficar visivel

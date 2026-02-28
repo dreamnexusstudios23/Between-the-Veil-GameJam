@@ -10,6 +10,9 @@ take = function()
 
 	if (_player_collide)
 	{
+		//Toca o som do item
+		audio_play_sound(sfx_item_pickup, 4, false, 2);
+		
 		//Dou mais um pulo para ele
 		global.dash = true;
 		

@@ -15,6 +15,8 @@ if (instance_exists(obj_player))
 {
 	if (instance_place(x, y, obj_player))
 	{
+		//Toca o som de vida
+		
 		//Só ganho vida se ela ainda não estiver no máximo
 		if (obj_player.life < 3) obj_player.life = 3;
 		

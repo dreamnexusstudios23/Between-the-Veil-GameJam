@@ -19,6 +19,9 @@ pickup = function()
 	{
 		if (place_meeting(x, y, obj_player))
 		{
+			//Toca o som do item
+			audio_play_sound(sfx_item_pickup, 4, false, 3);
+			
 			global.pitao = true;
 			
 			//Me destruo

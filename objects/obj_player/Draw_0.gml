@@ -11,7 +11,7 @@ draw_sprite(spr_mouse, 0, mouse_x, mouse_y);
 
 #region	//Desenha o efeito do DASH
 // Desenha rastros só se estiver dashando
-if (dash_ativado)
+if (dash_ativado && !global.death)
 {
     var trail_count = 10;
     var trail_space = 6;
@@ -42,7 +42,7 @@ draw_flash();
 #region //Desenha a tecla de mudar de mundo na cabeça do player
 
 // SE estou na zona da tecla, ela aparece na minha cabeça
-if (global.tecla_cw)
+if (global.tecla_cw && !global.death)
 {
 	var offset = cos(float_time) * 3; // 3 = altura do movimento (bem leve)
 
@@ -60,7 +60,7 @@ if (global.tecla_cw)
 }
 
 //Mostra a tecla F na cabeça quando estou em uma parede de pitão, e tenho o item
-if (pitao_wall && global.pitao)
+if (pitao_wall && global.pitao && !global.death)
 {
 	var offset = cos(float_time) * 3; // 3 = altura do movimento (bem leve)
 

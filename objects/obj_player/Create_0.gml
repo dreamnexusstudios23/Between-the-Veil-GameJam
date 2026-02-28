@@ -538,7 +538,9 @@ dash = function()
 	// Quando o cooldown ACABA (transição)
 	if (dash_cooldown <= 0 && !dash_ready)
 	{
-	    dash_ready = true;
+	    //Toca o som de quando tem mais um dash
+		audio_play_sound(sfx_dash, 5, false, 1, 0.30, 2);
+		dash_ready = true;
 	    start_flash(1, 0, 0.7, 20, 0.4); // roxinho suave
 	}
 	
@@ -548,6 +550,9 @@ dash = function()
 	{
 		dash_ativado = true;
 		t_dash_atual = timer_dash;
+		
+		//Toca o som do dash
+		audio_play_sound(sfx_dash, 6, false, 1, 0, 1.1);
 		
 		// pega direção baseada no input
 		dash_dir = right - left;
@@ -643,11 +648,17 @@ pitao_item = function()
 change_world = function()
 {
 	//Ao pressionar a tecla Q, troca entre os mundos SE não estiver atacando
-	if (change_w && !attacking && global.cw_permission) global.world = !global.world;
+	if (change_w && !attacking && global.cw_permission) 
+	{
+		//Toca o som que mudou de mundo
+		audio_play_sound(sfx_change_world, 7, false, 0.6, 0.10);
+		
+		global.world = !global.world;
+	}
 	
 	//SE world for false, é o mundo normal, se for true, é o mundo paralelo
 	if (global.world)
-	{
+	{	
 		//Torna só a layer plataform_b visivel
 		layer_set_visible("plataform_b", true);
 		layer_set_visible("plataform_a", false);
@@ -679,6 +690,11 @@ attack = function()
 	
 	if (attack_mb && atk_timer <= 0)
 	{
+		//Toca o som da espada
+		var _sword_sound = choose(sfx_player_hit_01, sfx_player_hit_02, sfx_player_hit_03);
+		
+		audio_play_sound(_sword_sound, 2, false, 0.6);
+		
 		var offset = 45;
 		var hit_x;
 		
@@ -756,11 +772,18 @@ flash_collision = function()
 	var _vida	   = place_meeting(x, y, obj_vida);
 	
 	//Se colidir com o extra jump, fica ciano / esverdedo
-	if (_ex_jump)			start_flash(0, 1, 1, 20, 0.5);
+	if (_ex_jump)
+	{
+		//Aviso sonoro
+		//Toca o som de quando tem mais um dash
+		audio_play_sound(sfx_dash, 5, false, 0.5, 0, 3);
+		start_flash(0, 1, 1, 20, 0.5);
+	}
+	
 	if (_dash)				start_flash(1, 0, 1, 15, 0.5);
 	if (_wall_jump)			start_flash(0, 0.7, 0.7, 15, 0.5);
 	if (_pitao)				start_flash(1, 1, 1, 15, 0.3);
-	if (_vida)				start_flash(0.7, 0, 0, 15, 0.6);
+	if (_vida)				start_flash(0, 0.8, 0, 15, 0.6);
 }
 
 //Sistema de dano sofrido
@@ -780,7 +803,7 @@ damage_player = function()
 	{		
 		//toca o som de dano do player
 		var _som_damage = choose(sfx_player_damage_1, sfx_player_damage_2);
-		audio_play_sound(_som_damage, 2, false, 0.6);
+		audio_play_sound(_som_damage, 3, false, 0.6);
 		
 		//Treme um pouco a tela
 		tremor(4);
