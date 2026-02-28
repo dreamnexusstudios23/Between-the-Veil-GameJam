@@ -80,6 +80,7 @@ pitao_ativado = false;
 pitao_timer	  = 5; //5 segundos
 p_timer_atual = pitao_timer;
 pitao_wall	  = false;
+pitao_sound   = false;
 
 //Variáveis de ataque
 atk_cooldown = 0; //1 segundo, porém está 0 por que eu já posso começar atacando
@@ -623,6 +624,15 @@ pitao_item = function()
 	//SE pitao foi ativado, então fico preso na parede até acabar o timer
 	if (pitao_ativado && pitao_wall)
 	{
+		
+		//SE ainda não tocou o som então toca
+		if (!pitao_sound)
+		{
+			audio_play_sound(sfx_pitao_use, 8, false, 0.6);
+			
+			pitao_sound = true;
+		}
+		
 		//Fica preso na parede
 		velv = 0;
 		
@@ -634,8 +644,12 @@ pitao_item = function()
 	//SE o timer do pitão for 0, então ele cai e desativa
 	if (p_timer_atual <= 0)
 	{
+		//Toca o som de cair
+		audio_play_sound(sfx_drop_pitao, 8, false, 1);
+		
 		pitao_ativado = false;
 		pitao_wall = false;
+		pitao_sound = false;
 		
 		//Reseta o timer do pitão
 		p_timer_atual = pitao_timer;
