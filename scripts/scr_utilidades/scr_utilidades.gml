@@ -123,5 +123,19 @@ function draw_flash()
 	}	
 }
 
+function tremor(_forca = 1)
+{
+	if (instance_exists(obj_teste_room))
+	{
+		with (obj_teste_room)
+		{
+			if (_forca > treme)
+			{
+				treme = _forca;
+			}
+		}
+	}
+}
+
 
 #endregion

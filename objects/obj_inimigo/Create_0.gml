@@ -71,8 +71,11 @@ damage = function()
 	//SE colidir com a hitbox do ataque do player, sofre dano
 	if (place_meeting(x, y, obj_hitbox) && dmg_timer <= 0)
 	{		
+		//Treme um pouco a tela
+		tremor(5);
+		
 		//Pisco vermelho
-		start_flash(1, 0, 0, 30, 0.4);
+		start_flash(1, 0, 0, 30, 0.8);
 		
 		//Perco vida
 		life--;
@@ -86,7 +89,30 @@ damage = function()
 	//SE a vida chegar a 0 eu morro
 	if (life <= 0)
 	{
-		instance_destroy(id);	
+		//Treme mais a tela
+		tremor(7);
+		
+		var _qtd_part = irandom_range(10, 15);
+		
+		repeat(_qtd_part)
+		{
+			//Quando eu morrer eu crio várias particulas
+			var _dir	  = random(90);
+			var _offset   = random_range(7, 15);
+			var _velh     = irandom_range(-3, 3);
+			var _velv     = irandom_range(-2, -5);
+			
+			//Cria a particula
+			var _part = instance_create_layer(x + _offset, y, layer, obj_inimigo_part_death);
+			
+			//Acessa a particula
+			_part.direction = _dir;
+			_part.hspeed = _velh; //Aplica velocidade horizontal
+			_part.vspeed = _velv; //Aplica velocidade vertical
+			_offset = + 10; //Cria afastamento entre as particulas
+		}
+		
+		instance_destroy(id); //Me destruo
 	}
 }
 

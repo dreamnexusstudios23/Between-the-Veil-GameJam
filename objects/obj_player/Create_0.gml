@@ -696,7 +696,7 @@ attack = function()
 		instance_create_layer(hit_x, hit_y, layer, obj_hitbox);
 		
 		//Reseta o tempo
-		atk_cooldown = 1; // 1 segundo
+		atk_cooldown = 0.7; // 0.7 segundo
 		atk_timer = atk_cooldown;
 	}
 	
@@ -766,6 +766,9 @@ damage_player = function()
 	//SE eu colidir com a hitbox do inimigo, eu perco vida e fico invencivel um tempo
 	if (_hitbox && !damage && !invencible)
 	{		
+		//Treme um pouco a tela
+		tremor(4);
+		
 		//Cor vermelha do flash
 		start_flash(1, 0, 0, 15, 1);
 		
@@ -779,6 +782,9 @@ damage_player = function()
 	//SE eu colidir com a hitbox do inimigo, eu perco vida e fico invencivel um tempo
 	if (_enemy && !damage && !invencible)
 	{		
+		//Treme um pouco a tela
+		tremor(4);
+		
 		//Cor vermelha do flash
 		start_flash(1, 0, 0, 15, 1);
 		
@@ -792,7 +798,10 @@ damage_player = function()
 	//SE eu colidir com a hitbox do inimigo, eu perco vida e fico invencivel um tempo
 	if (_saw != noone && !damage && !invencible && _saw.saw_world == global.world)
 	{
-	    start_flash(1, 0, 0, 15, 1);
+	    //Treme um muito a tela
+		tremor(10);
+		
+		start_flash(1, 0, 0, 15, 1);
 
 	    life -= 2;
 	    damage = true;
