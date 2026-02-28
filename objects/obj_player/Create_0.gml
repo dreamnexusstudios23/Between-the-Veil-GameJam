@@ -137,6 +137,9 @@ move = function()
 			//Cria a particula
 			instance_create_depth(x, y, 100, obj_part_jump);
 			
+			//Toca o som de pulo
+			audio_play_sound(sfx_player_jump, 2, false, 0.6);
+			
 			//Pula
 			velv -= 2;
 			velv = clamp(velv, max_velv , -max_velv) //Limita a altura do pulo
@@ -436,6 +439,9 @@ double_jump = function()
 		//Se apertar a seta para cima, eu pulo e gasto meu pulo E não estou na parede
 		if (up && !wall)
 		{
+			//Toca o som de pulo
+			audio_play_sound(sfx_player_jump, 2, false, 0.6);
+			
 			//Pulo
 			velv -= 2;
 			velv = clamp(velv, max_velv , -max_velv) //Limita o pulo
@@ -772,6 +778,10 @@ damage_player = function()
 	//SE eu colidir com a hitbox do inimigo, eu perco vida e fico invencivel um tempo
 	if (_hitbox && !damage && !invencible)
 	{		
+		//toca o som de dano do player
+		var _som_damage = choose(sfx_player_damage_1, sfx_player_damage_2);
+		audio_play_sound(_som_damage, 2, false, 0.6);
+		
 		//Treme um pouco a tela
 		tremor(4);
 		
@@ -788,6 +798,10 @@ damage_player = function()
 	//SE eu colidir com a hitbox do inimigo, eu perco vida e fico invencivel um tempo
 	if (_enemy && !damage && !invencible)
 	{		
+		//toca o som de dano do player
+		var _som_damage = choose(sfx_player_damage_1, sfx_player_damage_2);
+		audio_play_sound(_som_damage, 2, false, 0.6);
+		
 		//Treme um pouco a tela
 		tremor(4);
 		
@@ -804,7 +818,11 @@ damage_player = function()
 	//SE eu colidir com a hitbox do inimigo, eu perco vida e fico invencivel um tempo
 	if (_saw != noone && !damage && !invencible && _saw.saw_world == global.world)
 	{
-	    //Treme um muito a tela
+	    //toca o som de dano do player
+		var _som_damage = choose(sfx_player_damage_1, sfx_player_damage_2);
+		audio_play_sound(_som_damage, 2, false, 0.6);
+		
+		//Treme um muito a tela
 		tremor(10);
 		
 		start_flash(1, 0, 0, 15, 1);
@@ -840,6 +858,9 @@ damage_player = function()
 	//SE a vida chegar a 0, o player morre
 	if (life <= 0 && !dead)
 	{		
+		//Toca o som de morte
+		audio_play_sound(sfx_player_death, 2, false, 1);
+		
 		dead = true;
 	    global.cutscene = true;
     

@@ -71,6 +71,9 @@ damage = function()
 	//SE colidir com a hitbox do ataque do player, sofre dano
 	if (place_meeting(x, y, obj_hitbox) && dmg_timer <= 0)
 	{		
+		//Toca o som de dano
+		audio_play_sound(sfx_damage_monster, 1, false, 0.6);
+		
 		//Treme um pouco a tela
 		tremor(5);
 		
@@ -89,6 +92,9 @@ damage = function()
 	//SE a vida chegar a 0 eu morro
 	if (life <= 0)
 	{
+		//Toca o som de dano
+		audio_play_sound(sfx_damage_monster, 1, false, 0.6, 0, 0.3);
+		
 		//Treme mais a tela
 		tremor(7);
 		
