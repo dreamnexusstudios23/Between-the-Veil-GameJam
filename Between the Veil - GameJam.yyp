@@ -38,6 +38,7 @@
     {"id":{"name":"spr_level01","path":"sprites/spr_level01/spr_level01.yy",},"order":0,},
     {"id":{"name":"obj_tutorial_attack","path":"objects/obj_tutorial_attack/obj_tutorial_attack.yy",},"order":4,},
     {"id":{"name":"spr_wall_jump","path":"sprites/spr_wall_jump/spr_wall_jump.yy",},"order":1,},
+    {"id":{"name":"obj_tutorial_extra_jump","path":"objects/obj_tutorial_extra_jump/obj_tutorial_extra_jump.yy",},"order":7,},
     {"id":{"name":"obj_luz_tocha","path":"objects/obj_luz_tocha/obj_luz_tocha.yy",},"order":3,},
     {"id":{"name":"sfx_change_world","path":"sounds/sfx_change_world/sfx_change_world.yy",},"order":16,},
     {"id":{"name":"rm_level01","path":"rooms/rm_level01/rm_level01.yy",},"order":2,},

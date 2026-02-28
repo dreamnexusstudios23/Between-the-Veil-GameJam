@@ -23,20 +23,7 @@ if (alpha_tutorial > 0.01)
     draw_set_halign(fa_center);
 
     // Texto
-    draw_text(x, y, "Use         \npara se mover");
-    
-    // Tecla
-    draw_sprite_ext(
-        spr_a_s, 
-        0, 
-        x + 15, 
-        y - 5, 
-        0.35, 
-        0.35, 
-        image_angle, 
-        image_blend, 
-        alpha_tutorial // usa a mesma alpha
-    );
+    draw_text(x, y, "Moedas azuis concedem um \npulo extra no ar");
 
     // Reset
     draw_set_alpha(1);
