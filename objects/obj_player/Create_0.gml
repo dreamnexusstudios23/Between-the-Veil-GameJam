@@ -16,6 +16,9 @@ grav		= 0.4;
 dir			= 1;
 scale_base  = 1.5;
 
+//Variáveis de controle da tela de morte
+dead = false;
+
 //Desativa o cursor do mouse
 window_set_cursor(cr_none);
 
@@ -757,6 +760,9 @@ flash_collision = function()
 //Sistema de dano sofrido
 damage_player = function()
 {
+	//SE eu morri eu não sofro mais dano
+	if (dead) return;
+	
 	var _hitbox = place_meeting(x, y, obj_hitbox_enemy);
 	var _enemy  = place_meeting(x, y, obj_inimigo);
 	var _saw	= instance_place(x, y, obj_saw);
@@ -832,9 +838,30 @@ damage_player = function()
 	}
 	
 	//SE a vida chegar a 0, o player morre
-	if (life <= 0)
-	{
-		instance_destroy(id);	
+	if (life <= 0 && !dead)
+	{		
+		dead = true;
+	    global.cutscene = true;
+    
+	    // Para o movimento
+	    velh = 0;
+	    velv = 0;
+		image_alpha = 0;
+		
+		//Cria a instancia do personagem morte
+		if (object_exists(obj_player_death))
+		{
+			if (!instance_exists(obj_player_death))
+			{
+				//Cria a instancia
+				instance_create_layer(x, y, "player", obj_player_death);
+			}
+			else
+			{
+				//SE já criou então o player se destroi
+				instance_destroy(id);
+			}
+		}
 	}
 	
 }

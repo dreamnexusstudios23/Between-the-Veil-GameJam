@@ -55,6 +55,16 @@ image_yscale = scale_base;
 //Faz a tecla flutuar na cabeça do player
 float_time += 0.05; 
 
+//Faz com que espere a animação de morte terminar para mostrar o texto de reiniciar a room
+if (dead)
+{
+    if (image_index >= image_number - 1)
+    {
+       //SE animação chegou no final, ela fica parada
+	   image_index = image_number - 1
+    }
+}
+
 #endregion
 
 //SE apertar o TAB, ativa o debug

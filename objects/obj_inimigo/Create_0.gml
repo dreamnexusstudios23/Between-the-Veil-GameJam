@@ -188,6 +188,9 @@ grav_check = function()
 //Checa o raio de ação
 rain_entrance_check = function()
 {
+	//SE o player morreu ou está em cutscene ele sai do método
+	if (global.cutscene) return;
+	
 	#region //Identificador se entrou no raio de visão do inimigo
 	//Cria o raio de ação
 	var _player = collision_circle(x, y, rain_size, obj_player, false, true);
@@ -225,6 +228,9 @@ rain_entrance_check = function()
 //Checa o alvo
 targed_check = function()
 {
+	//SE o player morreu ou está em cutscene ele sai do método
+	if (global.cutscene) return;
+	
 	//SE a instancia do player existe
 	if (instance_exists(obj_player))
 	{
@@ -299,7 +305,7 @@ state_machine = function()
 			if (chao) velv = 0;
 			
 			//SE ainda não entrou no raio, e o tempo acabou ele muda de estado
-			if (!collision_rain && t_change_state <= 0)
+			if (!collision_rain && t_change_state <= 0 && !global.cutscene)
 			{
 				//Muda para o estado de andando
 				state = "walk";
