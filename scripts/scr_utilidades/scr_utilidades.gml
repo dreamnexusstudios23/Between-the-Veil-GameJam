@@ -14,6 +14,7 @@ global.tecla_cw = false;
 #region	//Global de cutscene
 
 global.cutscene = false;
+global.death	= false;
 
 #endregion
 

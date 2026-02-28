@@ -1,6 +1,20 @@
 /// @description Inserir descrição aqui
 // Você pode escrever seu código neste editor
 
+//SE o player morreu, ele torna todas camadas invisiveis
+if (global.death)
+{
+	layer_set_visible("light", false);	
+	layer_set_visible("change_world", false);	
+	layer_set_visible("enemies", false);	
+	layer_set_visible("pitao", false);
+	layer_set_visible("world_b", false);
+	layer_set_visible("world_a", false);
+	layer_set_visible("fog", false);
+	layer_set_visible("itens", false);
+}
+
+
 #region screenshake
 
 //Tremendo a tela
@@ -34,6 +48,7 @@ if (keyboard_check_pressed(ord("R")))
 	room_restart();
 	//Reseta as globais;
 	global.world = false;
+	global.death = false;
 	
 	//SE eu to na fase 2 eu perco o pitão
 	if (level02_pitao) global.pitao = false;

@@ -3,7 +3,6 @@
 
 
 #region /// ===== CONFIGURAÇÃO DA NÉVOA =====
-/// CREATE EVENT
 
 // Sistema
 ps_fog = part_system_create();

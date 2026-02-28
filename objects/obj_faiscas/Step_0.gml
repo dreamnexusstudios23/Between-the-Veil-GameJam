@@ -4,7 +4,7 @@
 spark_timer++;
 
 //Só crio a particula se Estou no mundo alternativo
-if (!global.world)
+if (!global.world && !global.death)
 {
 	if (spark_timer >= spark_interval)
 	{

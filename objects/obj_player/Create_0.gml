@@ -855,6 +855,7 @@ damage_player = function()
 			{
 				//Cria a instancia
 				instance_create_layer(x, y, "player", obj_player_death);
+				global.death = true;
 			}
 			else
 			{
