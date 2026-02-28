@@ -332,16 +332,14 @@ state_machine = function()
 			
 			//SE eu tenho alvo
 		    if (instance_exists(alvo))
-		    {
-		        // Decide direção baseada na posição do player
-		        if (alvo.x > x)
-		        {
-		            dir = 1;
-		        }
-		        else
-		        {
-		            dir = -1;
-		        }
+		    {				
+				var dx = alvo.x - x;
+
+				// Deadzone horizontal de 8 pixels
+				if (abs(dx) > 4)
+				{
+				    dir = sign(dx);
+				}
 
 		        // Move horizontalmente
 		        velh = dir * max_velh;

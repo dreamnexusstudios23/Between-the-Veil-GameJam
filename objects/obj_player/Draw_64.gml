@@ -21,6 +21,14 @@ if (!global.cutscene)
 	var _dash_x = 0;
 	
 	//Desenha a quantidade de Dash
+	repeat(qtd_dash)
+	{
+		//Desenha a sprite de dash	
+		draw_sprite_ext(spr_dash_HUD, 0, 20 + _dash_x, 45, 2, 2, image_angle, image_blend, image_alpha);
+		
+		//Sempre da um espaço entre os icones
+		_dash_x += 35;
+	}
 }
 
 #endregion

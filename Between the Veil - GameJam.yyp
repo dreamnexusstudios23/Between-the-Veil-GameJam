@@ -81,6 +81,7 @@
     {"id":{"name":"spr_jump_extra","path":"sprites/spr_jump_extra/spr_jump_extra.yy",},"order":0,},
     {"id":{"name":"spr_player_fall","path":"sprites/spr_player_fall/spr_player_fall.yy",},"order":4,},
     {"id":{"name":"spr_level03","path":"sprites/spr_level03/spr_level03.yy",},"order":0,},
+    {"id":{"name":"spr_dash_HUD","path":"sprites/spr_dash_HUD/spr_dash_HUD.yy",},"order":15,},
     {"id":{"name":"obj_extra_jump","path":"objects/obj_extra_jump/obj_extra_jump.yy",},"order":0,},
     {"id":{"name":"obj_tutorial_pitao","path":"objects/obj_tutorial_pitao/obj_tutorial_pitao.yy",},"order":5,},
     {"id":{"name":"spr_colisor","path":"sprites/spr_colisor/spr_colisor.yy",},"order":0,},
