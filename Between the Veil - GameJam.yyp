@@ -76,6 +76,7 @@
     {"id":{"name":"obj_hitbox","path":"objects/obj_hitbox/obj_hitbox.yy",},"order":0,},
     {"id":{"name":"spr_player_death","path":"sprites/spr_player_death/spr_player_death.yy",},"order":16,},
     {"id":{"name":"spr_player_jump_mask","path":"sprites/spr_player_jump_mask/spr_player_jump_mask.yy",},"order":3,},
+    {"id":{"name":"obj_menu","path":"objects/obj_menu/obj_menu.yy",},"order":1,},
     {"id":{"name":"sfx_player_damage_2","path":"sounds/sfx_player_damage_2/sfx_player_damage_2.yy",},"order":3,},
     {"id":{"name":"spr_player_idle","path":"sprites/spr_player_idle/spr_player_idle.yy",},"order":1,},
     {"id":{"name":"spr_cenarie_tutorial","path":"sprites/spr_cenarie_tutorial/spr_cenarie_tutorial.yy",},"order":0,},
