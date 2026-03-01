@@ -27,7 +27,7 @@ layer_sequence_create("sequence", 0, 0, sq_fade_out_final);
 //Quando timer menu for 0, eu volto pro menu
 if (timer_menu <= 0)
 {
-	room_goto(rm_tutorial);
+	room_goto(rm_menu);
 	
 	//Reinicia as globais
 	global.dash = false;
