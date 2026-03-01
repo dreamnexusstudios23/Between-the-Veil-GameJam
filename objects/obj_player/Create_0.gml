@@ -3,6 +3,9 @@
 
 #region //Variáveis de controle do player
 
+//Variável da cutscene inicial
+init_player = false;
+
 //Variáveis de polimento visual
 dash_ready		= true; // controla se já mostrou o efeito
 pitao_feedback	= false; //Ativa o feedback visual da parede do pitao
@@ -234,11 +237,14 @@ update_state = function()
         return;
     }
 	
-	// Começa ataque
 	if (attack_mb)
 	{
 	    attacking = true;
 	    state = PlayerState.ATTACK;
+
+	    image_index = 0;   // <-- força reset
+	    image_speed = 1;
+
 	    return;
 	}
 	

@@ -3,6 +3,20 @@
 
 #region //Utilza os métodos
 
+if (init_player)
+{
+	//SE o player sair da room ele morre
+	if (x > room_width + 40 or x < - 40)
+	{
+		life = 0;	
+	}
+	//SE o player sair da room ele morre
+	if (y > room_height + 40 or y < - 40)
+	{
+		life = 0;	
+	}
+}
+
 //Aplica a colisão e movimento
 pixel_perfect();
 
@@ -31,7 +45,7 @@ if (!global.cutscene) pitao_item();
 if (!global.cutscene) change_world();
 
 //Método de ataque
-if (!global.cutscene) attack();
+if (!global.cutscene && init_player) attack();
 
 //Faz update dos estados
 if (!global.cutscene) update_state();

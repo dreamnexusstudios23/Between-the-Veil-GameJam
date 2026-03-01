@@ -3,4 +3,10 @@
 
 layer_sequence_create("sequence", 0, 0, sq_fade_in_04);
 
+//ja inicia o player dessa room podendo atacar
+with (obj_player)
+{
+	init_player = true;	
+}
+
 global.cutscene = false;
